@@ -6,11 +6,15 @@ A working hours management system developed mainly for Tampereen Urho Osuuskunta
 
 To install the dependencies of this project use the following:
 
+---------------------------------
+
 -npm install --g create-react-app
+
 create-react-app my-app
 
-After this you can use 
+cd my-app
 
-npm start 
+npm start
 
-to start the server up and begin developing.
+---------------------------------
+
