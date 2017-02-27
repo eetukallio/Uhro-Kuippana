@@ -2,8 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import Paychecks from './views/paychecks'
+import HourEntry from './views/hourentry'
+
+import { browserHistory, Router, Route, IndexRoute} from 'react-router'
 
 ReactDOM.render(
-  <App />,
+    <Router history={browserHistory}>
+
+        <Route path="/" component={App}>
+
+            <IndexRoute component={HourEntry}/>
+            <Route path="/home" component={HourEntry}/>
+            <Route path="/paychecks" component={Paychecks}/>
+        </Route>
+    </Router>,
   document.getElementById('root')
 );
