@@ -8,7 +8,7 @@ To install the dependencies of this project use the following:
 
 ---------------------------------
 
--npm install --g create-react-app
+npm install --g create-react-app
 
 create-react-app my-app
 
