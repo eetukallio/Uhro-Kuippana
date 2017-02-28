@@ -5,9 +5,9 @@ class HourEntry extends Component {
 
     render() {
         return (
-                <div  className="hourEntry">
-                    <p>Hours entry here</p>
-                </div>
+            <div  className="hourEntry">
+                <p>>>Hours entry here</p>
+            </div>
         );
     }
 

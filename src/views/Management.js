@@ -6,7 +6,7 @@ class Management extends Component {
     render() {
         return (
             <div  className="management">
-                <p>Management here</p>
+                <p>>>Management here</p>
             </div>
         );
     }

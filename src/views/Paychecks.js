@@ -6,7 +6,7 @@ class Paychecks extends Component {
     render() {
         return (
             <div  className="paychecks">
-                <p>Paychecks here</p>
+                <p>>>Paychecks here</p>
             </div>
         );
     }
