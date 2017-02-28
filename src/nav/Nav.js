@@ -14,7 +14,7 @@ class Nav extends Component {
                     <ul className="header-subnav">
                         <li><Link to="/home">Tuntien syöttö </Link></li>
                         <li><Link to="/paychecks"> Palkkalaskelmat</Link> </li>
-                        <li><Link to="/paychecks">Hallinta</Link></li>
+                        <li><Link to="/management">Hallinta</Link></li>
                     </ul>
                 </header>
             </div>
