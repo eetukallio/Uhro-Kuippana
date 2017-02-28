@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../images/urho-logo.png';
 import './Nav.css';
+import {Link} from 'react-router';
 
 class Nav extends Component {
 
@@ -11,9 +12,9 @@ class Nav extends Component {
                     <img src={logo} className="App-logo" />
                     <h1 className="headline"> Kuippana</h1>
                     <ul className="header-subnav">
-                        <li><a href="#">Tuntien syöttö</a></li>
-                        <li><a href="#" className="is-active">Palkkalaskelmat</a></li>
-                        <li><a href="#">Hallinta</a></li>
+                        <li><Link to="/home">Tuntien syöttö </Link></li>
+                        <li><Link to="/paychecks"> Palkkalaskelmat</Link> </li>
+                        <li><Link to="/management">Hallinta</Link></li>
                     </ul>
                 </header>
             </div>
