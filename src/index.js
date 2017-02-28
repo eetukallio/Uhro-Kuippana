@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import Paychecks from './views/paychecks'
-import HourEntry from './views/hourentry'
+import Paychecks from './views/Paychecks';
+import HourEntry from './views/HourEntry';
 
-import { browserHistory, Router, Route, IndexRoute} from 'react-router'
+import { browserHistory, Router, Route, IndexRoute} from 'react-router';
 
 ReactDOM.render(
     <Router history={browserHistory}>
