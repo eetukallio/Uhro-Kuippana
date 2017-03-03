@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import Paychecks from './views/Paychecks';
-import HourEntry from './views/HourEntry';
-import Management from './views/Management';
+import Paychecks from './views/paychecks/Paychecks';
+import HourEntry from './views/hourentry/HourEntry';
+import Management from './views/management/Management';
 
 import { browserHistory, Router, Route, IndexRoute} from 'react-router';
 
