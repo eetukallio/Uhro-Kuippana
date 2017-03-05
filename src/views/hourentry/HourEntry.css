@@ -1,1 +1,5 @@
-.hourentry {text-align: center; margin: auto}
+.hourEntry {
+    text-align: center;
+    margin: auto;
+    padding: 1em;
+}
