@@ -45,6 +45,14 @@ class HourForm extends React.Component {
                             <FormControl type="date" />
                         </Col>
                     </FormGroup>
+                    <FormGroup controlId="infoField">
+                        <Col componentClass={ControlLabel} xs={3} sm={4}>
+                            Huomioitavaa
+                        </Col>
+                        <Col xs={8} sm={4}>
+                            <FormControl componentClass="textArea" />
+                        </Col>
+                    </FormGroup>
                     <FormGroup controlId="submitButton">
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
 
