@@ -16,7 +16,7 @@ class HourForm extends React.Component {
                     </FormGroup>
                     <FormGroup controlId="workTypeField">
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Työn Laatu
+                            Työnkuva
                         </Col>
                         <Col xs={8} sm={4}>
                             <FormControl componentClass="select" placeholder="Valitse" required>
