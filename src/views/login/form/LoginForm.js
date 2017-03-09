@@ -6,13 +6,13 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="login">
-                <Form horizontal>
+                <Form horizontal onSubmit={this.props.onSubmit}>
                     <FormGroup controlId="userNameField">
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Tunnus
                         </Col>
                         <Col xs={8} sm={4}>
-                            <FormControl type="text" required />
+                            <FormControl name="username" onChange={this.props.onChange} required />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="passwordField">
@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
                             Salasana
                         </Col>
                         <Col xs={8} sm={4}>
-                            <FormControl type="password" required />
+                            <FormControl type="password" name="password" onChange={this.props.onChange} required />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="submitButton">
@@ -28,15 +28,25 @@ class LoginForm extends React.Component {
 
                         </Col>
                         <Col xs={1} sm={1}>
-                            <Button type="submit" onClick={this.props.handleClick}>
+                            <Button type="submit">
                                 Kirjaudu
                             </Button>
                         </Col>
                     </FormGroup>
+                    <p>{this.props.errors.message}</p>
+
                 </Form>
             </div>
         )
     }
 }
+
+LoginForm.propTypes = {
+    onSubmit: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    errors: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object.isRequired
+};
+
 
 export default LoginForm;
