@@ -9,7 +9,7 @@ class Nav extends Component {
         return (
             <div className="Nav">
                 <header className="header">
-                    <img src={logo} className="App-logo" />
+                    <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="headline"> Kuippana</h1>
                     <ul className="header-subnav">
                         <li><Link to="/home">Tuntien syöttö </Link></li>
