@@ -3,33 +3,14 @@
  */
 import React, { Component } from 'react';
 import './Workers.css';
-import {Table} from 'react-bootstrap';
+import DataTable from './DataTable';
 
 class Workers extends Component {
     
     render() {
         return (
             <div  className="workers">
-                <Table striped bordered condensed hover>
-                    <thead>
-                    <tr>
-                        <th>Nimi</th>
-                        <th>Osoite</th>
-                        <th>Puhelinnumero</th>
-                        <th>Veroprosentti</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Jani Pekkala</td>
-                        <td>Toijalankuja 12</td>
-                        <td>0400213543</td>
-                        <td>12</td>
-                    </tr>
-                    </tbody>
-                </Table>
-                    
+                <DataTable src="http://207.154.228.188:3000/users"/>
             </div>
         );
     }
