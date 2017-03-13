@@ -1,0 +1,59 @@
+.management-nav {
+    text-align: left;
+    margin: auto;
+    font-size: 0.75rem;
+    color: sandybrown;
+    text-transform: uppercase;
+    display: block;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.35s ease-in-out;
+
+
+}
+.management {
+    height: 100vh;
+}
+
+.management-nav ul {
+    padding-left: 0.4rem;
+
+}
+
+.management-nav li {
+    float: left;
+    padding: 0.9rem;
+    list-style: none;
+
+}
+
+.management-nav li a {
+    text-decoration: none;
+    color: sandybrown;
+    transition: all 0.35s ease-in-out;
+}
+
+.management-nav li {
+    text-decoration: none;
+    color: sandybrown;
+}
+
+.management-nav li a:visited {
+    text-decoration: none;
+    color: sandybrown;
+}
+
+.management-nav li:hover {
+    text-decoration: none;
+    color: sandybrown;
+    background: #dedede;
+    transition: all 0.35s ease-in-out;
+}
+
+.content {
+    clear: left;
+
+
+    height:100vh;
+}
+
