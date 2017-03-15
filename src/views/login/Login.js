@@ -1,5 +1,5 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 import LoginForm from './form/LoginForm';
 import './Login.css'
 
@@ -12,10 +12,6 @@ class Login extends React.Component {
                 username: '',
                 password: ''
             },
-            login: {
-                username: 'root',
-                password: 'root'
-            }
         };
 
         this.onChange = this.onChange.bind(this);
@@ -35,20 +31,29 @@ class Login extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        if (this.state.user.username === this.state.login.username
-            && this.state.user.password === this.state.login.password) {
-            browserHistory.push('/home');
-        } else if (this.state.user.username !== this.state.login.username) {
-            console.log("incorrect username");
-            this.setState({
-                errors: {message: "Incorrect username"}
-            })
-        } else if (this.state.user.username === this.state.login.username
-            && this.state.user.password !== this.state.login.password) {
-            this.setState({
-                errors: {message: "Incorrect password"}
-            })
-        }
+
+        const form = new FormData();
+        form.append("username", this.state.user.username);
+        form.append("password", this.state.user.password);
+
+        const sendData = {username: this.state.user.username, password: this.state.user.password};
+
+        console.log("ELI FORMISSA ON " + form.get("username") + form.get("password"));
+
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        fetch("http://localhost:8080/login", {
+            method: 'post',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default',
+            body: JSON.stringify(sendData),
+        }).then((res) => res.json()).then(data => {
+            if (data.loggedIn === true) {
+                hashHistory.push("/home");
+            }
+        }).catch(err => console.log(err))
     }
 
     render() {
