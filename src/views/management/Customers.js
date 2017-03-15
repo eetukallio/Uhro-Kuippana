@@ -6,11 +6,27 @@ import './Customers.css';
 import DataTable from './DataTable';
 
 class Customers extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data : props.data,
+            headers: [
+                "Nimi",
+                "Osoite",
+                "Kaupunki",
+                "Postinumero",
+                "Y-tunnus",
+            ]
+        }
+
+        console.log(this.state.data);
+    }
 
     render() {
         return (
             <div  className="customers">
-                <DataTable src="http://207.154.228.188:3000/users"/>
+                <DataTable data={this.state.data} headers={this.state.headers}/>
             </div>
         );
     }

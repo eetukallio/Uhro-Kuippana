@@ -8,40 +8,40 @@ import {Table} from 'react-bootstrap';
 class DataTable extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Datatable");
         this.state = {
-            data: "",
-            src: props.src
+            data: props.data,
+            headers: props.headers
         }
-        this.fetchData = this.fetchData.bind(this);
+        this.setUpTable = this.setUpTable.bind(this);
+        this.setUpHeaders = this.setUpHeaders.bind(this);
     }
 
-    fetchData() {
-        console.log("fetchData()");
-        const request = new XMLHttpRequest();
-        request.open("GET", this.state.src, false);
-        request.send(null);
-        const returnValue = request.responseText;
-        let mydata = JSON.parse(returnValue);
-        let rows = [];
+    setUpHeaders() {
 
-        mydata.forEach(function (user) {
-
-            rows.push(
-                <tr>
-                    <td>{user.lastName} {user.firstName}</td>
-                    <td>{user.streetAddress}</td>
-                    <td>{user.city}</td>
-                    <td>{user.zipCode}</td>
-                    <td>{user.taxPercent}</td>
-                    <td>{user.hourWage}</td>
-                    <td>{user.username}</td>
-                </tr>
-            )
+        let arr = this.state.headers.map(function (head) {
+            return <th>{head}</th>;
         });
-        this.setState({
-            data: rows
-        })
+        return arr;
+    }
+
+
+
+    setUpTable() {
+        console.log(this.state.data);
+        const tmp = this.state.data;
+        const arr = tmp.map(function (obj) {
+            return <tr key={obj.id}>
+                    <td key="name">{obj.lastName} {obj.firstName}</td>
+                <td key="address">{obj.streetAddress}</td>
+                <td key="city">{obj.city}</td>
+                <td key="zip">{obj.zipCode}</td>
+                <td key="tax">{obj.taxPercent}</td>
+                <td key="wage">{obj.hourWage}</td>
+                <td key="username">{obj.username}</td>
+                     </tr>
+        });
+
+        return arr;
     }
 
     render() {
@@ -49,17 +49,11 @@ class DataTable extends React.Component {
             <Table striped bordered condensed hover>
                 <thead>
                 <tr>
-                    <th>Nimi</th>
-                    <th>Osoite</th>
-                    <th>Kaupunki</th>
-                    <th>Postinumero</th>
-                    <th>Veroprosentti</th>
-                    <th>Tuntipalkka</th>
-                    <th>Käyttäjätunnus</th>
+                    {this.setUpHeaders()}
                 </tr>
                 </thead>
                 <tbody>
-                    {this.fetchData}
+                    {this.setUpTable()}
                 </tbody>
             </Table>
         )
