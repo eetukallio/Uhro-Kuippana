@@ -33,7 +33,7 @@ class LoginForm extends React.Component {
                             </Button>
                         </Col>
                     </FormGroup>
-                    <p>{this.props.errors.message}</p>
+                    <p style={{color: "red"}}>{this.props.errors.message}</p>
 
                 </Form>
             </div>
