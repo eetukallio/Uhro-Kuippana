@@ -20,6 +20,7 @@ ReactDOM.render(
             <Route path="/home" component={HourEntry}/>
             <Route path="/paychecks" component={Paychecks}/>
             <Route path="/management" component={Management}>
+                <IndexRoute component={Customers}/>
                 <Route path="/management/workers" component={Workers}/>
                 <Route path="/management/customers" component={Customers}/>
             </Route>
