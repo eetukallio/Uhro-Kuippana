@@ -12,8 +12,7 @@ class Management extends Component {
         }
     }
 
-
-    componentDidMount() {
+    componentWillMount() {
        this.fetchData();
     }
 
@@ -33,12 +32,15 @@ class Management extends Component {
             });
     }
 
-
     renderChildren() {
+        let wData = this.state.workerData;
+        let cData = this.state.customerData;
+
         return React.Children.map(this.props.children, child => {
 
             return React.cloneElement(child, {
-                data: this.state.workerData
+                workerData: wData,
+                clientData: cData
             });
 
         });
@@ -59,7 +61,6 @@ class Management extends Component {
             </div>
         );
     }
-
 }
 
 export default Management;

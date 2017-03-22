@@ -10,7 +10,7 @@ class Customers extends Component {
         super(props);
 
         this.state = {
-            data : props.data,
+            data : props.clientData,
             headers: [
                 "Nimi",
                 "Osoite",

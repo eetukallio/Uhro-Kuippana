@@ -10,7 +10,7 @@ class Workers extends Component {
         super(props);
 
         this.state = {
-            data : props.data,
+            data : props.workerData,
             workerData: [],
             headers: [
                 "Nimi",
