@@ -31,7 +31,7 @@ class Workers extends Component {
     render() {
         return (
             <div  className="workers">
-                <DataTable data={this.state.data} headers={this.state.headers}/>
+                <DataTable type="workers" data={this.state.data} headers={this.state.headers}/>
             </div>
         );
     }

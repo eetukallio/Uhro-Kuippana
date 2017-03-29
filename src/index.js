@@ -8,6 +8,7 @@ import HourEntry from './views/hourentry/HourEntry';
 import Management from './views/management/Management';
 import Customers from './views/management/Customers';
 import Workers from './views/management/Workers';
+import HourEntries from './views/management/HourEntries';
 
 import { browserHistory, Router, Route, IndexRoute} from 'react-router';
 
@@ -20,9 +21,10 @@ ReactDOM.render(
             <Route path="/home" component={HourEntry}/>
             <Route path="/paychecks" component={Paychecks}/>
             <Route path="/management" component={Management}>
-                <IndexRoute component={Customers}/>
+                <IndexRoute component={HourEntries}/>
                 <Route path="/management/workers" component={Workers}/>
                 <Route path="/management/customers" component={Customers}/>
+                <Route path="/management/entries"  component={HourEntries}/>
             </Route>
         </Route>
     </Router>,

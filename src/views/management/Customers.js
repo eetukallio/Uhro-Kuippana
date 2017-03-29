@@ -18,7 +18,7 @@ class Customers extends Component {
                 "Postinumero",
                 "Y-tunnus",
             ]
-        }
+        };
 
         console.log(this.state.data);
     }
@@ -26,7 +26,7 @@ class Customers extends Component {
     render() {
         return (
             <div  className="customers">
-                <DataTable data={this.state.data} headers={this.state.headers}/>
+                <DataTable type="customers" data={this.state.data} headers={this.state.headers}/>
             </div>
         );
     }
