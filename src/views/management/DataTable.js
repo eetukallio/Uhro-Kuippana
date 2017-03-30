@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import {Table} from 'react-bootstrap';
 
-class DataTable extends React.Component {
+class DataTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,11 +32,11 @@ class DataTable extends React.Component {
 
         let rows = [];
 
-        if(this.state.type == "workers") {
+        if(this.state.type === "workers") {
             rows = this.setWorkers();
-        } else if(this.state.type == "customers") {
+        } else if(this.state.type === "customers") {
             rows = this.setCustomers();
-        } else if(this.state.type == "entries") {
+        } else if(this.state.type === "entries") {
             rows = this.setEntries();
         }
         return rows;
@@ -59,19 +59,24 @@ class DataTable extends React.Component {
 
     setWorkers() {
         const tmp = this.state.data;
-        const arr = tmp.map(function (obj) {
-            return <tr key={obj.id}>
-                <td key="name">{obj.lastName} {obj.firstName}</td>
-                <td key="address">{obj.streetAddress}</td>
-                <td key="city">{obj.city}</td>
-                <td key="zip">{obj.zipCode}</td>
-                <td key="tax">{obj.taxPercent}</td>
-                <td key="wage">{obj.hourWage}</td>
-                <td key="username">{obj.username}</td>
-            </tr>
+        const searchInput = this.props.searchInput;
+        console.log(this.props.searchInput);
+        console.log("DataTable search: " + this.props.searchInput);
+
+        return tmp.filter(function (obj) {
+            return obj.firstName.includes(searchInput) || obj.lastName.includes(searchInput);
+        }).map(function (obj) {
+                return (<tr key={obj.id}>
+                    <td key="name">{obj.lastName} {obj.firstName}</td>
+                    <td key="address">{obj.streetAddress}</td>
+                    <td key="city">{obj.city}</td>
+                    <td key="zip">{obj.zipCode}</td>
+                    <td key="tax">{obj.taxPercent}</td>
+                    <td key="wage">{obj.hourWage}</td>
+                    <td key="username">{obj.username}</td>
+                </tr>);
         });
 
-        return arr;
     }
 
     setEntries() {

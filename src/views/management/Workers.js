@@ -29,9 +29,11 @@ class Workers extends Component {
     }
 
     render() {
+        console.log("Workers searchinput: "+this.props.searchInput);
         return (
             <div  className="workers">
-                <DataTable type="workers" data={this.state.data} headers={this.state.headers}/>
+                <DataTable type="workers" searchInput={this.props.searchInput}
+                           data={this.state.data} headers={this.state.headers}/>
             </div>
         );
     }

@@ -9,7 +9,8 @@ class Management extends Component {
         this.state = {
             customerData: [],
             workerData: [],
-            entryData: []
+            entryData: [],
+            searchInput:""
         }
     }
 
@@ -41,18 +42,32 @@ class Management extends Component {
 
     }
 
+    handleSearchInput(e) {
+        const searchInput = e.target.value;
+        console.log(e.target.value);
+        this.setState({
+            searchInput
+        })
+    }
+
     renderChildren() {
         let wData = this.state.workerData;
         let cData = this.state.customerData;
         let eData = this.state.entryData;
+        let searchInput = this.state.searchInput;
 
         return React.Children.map(this.props.children, child => {
+
+            console.log("Management state searchInput: " + this.state.searchInput);
 
             return React.cloneElement(child, {
                 workerData: wData,
                 clientData: cData,
-                entryData: eData
+                entryData: eData,
+                searchInput: searchInput
             });
+
+
 
         });
     }
@@ -66,6 +81,9 @@ class Management extends Component {
                         <Link to="/management/customers"><li>Asiakkaat</li></Link>
                         <Link to="/management/workers"><li>Työntekijät</li></Link>
                     </ul>
+                </div>
+                <div className="searchBar">
+                    <input onChange={this.handleSearchInput.bind(this)} />
                 </div>
                 <div className="content">
                     {this.renderChildren()}
