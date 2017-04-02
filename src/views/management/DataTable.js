@@ -44,7 +44,12 @@ class DataTable extends Component {
 
     setCustomers() {
         const tmp = this.state.data;
-        const arr = tmp.map(function (obj) {
+        const searchInput = this.props.searchInput;
+
+        return tmp.filter(function (obj) {
+            return obj.name.includes(searchInput) ||
+                    obj.streetAddress.includes(searchInput)
+        }).map(function (obj) {
             return <tr key={obj.id}>
                 <td key="name">{obj.name}</td>
                 <td key="address">{obj.streetAddress}</td>
@@ -53,8 +58,6 @@ class DataTable extends Component {
                 <td key="ycode">{obj.yCode}</td>
             </tr>
         });
-
-        return arr;
     }
 
     setWorkers() {
@@ -64,7 +67,9 @@ class DataTable extends Component {
         console.log("DataTable search: " + this.props.searchInput);
 
         return tmp.filter(function (obj) {
-            return obj.firstName.includes(searchInput) || obj.lastName.includes(searchInput);
+            return obj.firstName.includes(searchInput) ||
+                obj.lastName.includes(searchInput) ||
+                obj.streetAddress.includes(searchInput);
         }).map(function (obj) {
                 return (<tr key={obj.id}>
                     <td key="name">{obj.lastName} {obj.firstName}</td>
@@ -81,7 +86,14 @@ class DataTable extends Component {
 
     setEntries() {
         const tmp = this.state.data;
-        const arr = tmp.map(function (obj) {
+        const searchInput = this.props.searchInput;
+
+        return tmp.filter(
+            function (obj) {
+                return obj.client.includes(searchInput) ||
+                        obj.quality.includes(searchInput)
+            }
+        ).map(function (obj) {
             return <tr key={obj.id}>
                 <td key="user">{obj.user} </td>
                 <td key="client">{obj.client}</td>
@@ -90,8 +102,6 @@ class DataTable extends Component {
                 <td key="quality">{obj.quality}</td>
             </tr>
         });
-
-        return arr;
     }
 
     render() {
