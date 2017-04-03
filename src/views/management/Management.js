@@ -66,9 +66,6 @@ class Management extends Component {
                 entryData: eData,
                 searchInput: searchInput
             });
-
-
-
         });
     }
 

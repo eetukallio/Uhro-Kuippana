@@ -67,9 +67,9 @@ class DataTable extends Component {
         console.log("DataTable search: " + this.props.searchInput);
 
         return tmp.filter(function (obj) {
-            return obj.firstName.includes(searchInput) ||
-                obj.lastName.includes(searchInput) ||
-                obj.streetAddress.includes(searchInput);
+            return obj.firstName.toLowerCase().includes(searchInput.toLowerCase()) ||
+                obj.lastName.toLowerCase().includes(searchInput.toLowerCase()) ||
+                obj.streetAddress.toLowerCase().includes(searchInput.toLowerCase());
         }).map(function (obj) {
                 return (<tr key={obj.id}>
                     <td key="name">{obj.lastName} {obj.firstName}</td>
