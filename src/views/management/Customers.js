@@ -26,7 +26,7 @@ class Customers extends Component {
     render() {
         return (
             <div  className="customers">
-                <DataTable type="customers" data={this.state.data} headers={this.state.headers}/>
+                <DataTable type="customers" searchInput={this.props.searchInput} data={this.state.data} headers={this.state.headers}/>
             </div>
         );
     }

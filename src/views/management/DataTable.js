@@ -25,8 +25,6 @@ class DataTable extends Component {
         return arr;
     }
 
-
-
     setUpTable() {
         console.log(this.state.data);
 
@@ -45,24 +43,27 @@ class DataTable extends Component {
     setCustomers() {
         const tmp = this.state.data;
         const searchInput = this.props.searchInput;
+        console.log("Customers searchInput: " + searchInput);
 
         return tmp.filter(function (obj) {
-            return obj.name.includes(searchInput) ||
-                    obj.streetAddress.includes(searchInput)
+            console.log(obj.name);
+            return obj.name.includes(searchInput);
         }).map(function (obj) {
+            console.log(obj);
             return <tr key={obj.id}>
                 <td key="name">{obj.name}</td>
                 <td key="address">{obj.streetAddress}</td>
                 <td key="city">{obj.city}</td>
                 <td key="zip">{obj.zipCode}</td>
                 <td key="ycode">{obj.yCode}</td>
-            </tr>
+            </tr>;
         });
     }
 
     setWorkers() {
         const tmp = this.state.data;
         const searchInput = this.props.searchInput;
+
         console.log(this.props.searchInput);
         console.log("DataTable search: " + this.props.searchInput);
 
@@ -71,7 +72,8 @@ class DataTable extends Component {
                 obj.lastName.toLowerCase().includes(searchInput.toLowerCase()) ||
                 obj.streetAddress.toLowerCase().includes(searchInput.toLowerCase());
         }).map(function (obj) {
-                return (<tr key={obj.id}>
+                console.log(obj);
+                 return <tr key={obj.id}>
                     <td key="name">{obj.lastName} {obj.firstName}</td>
                     <td key="address">{obj.streetAddress}</td>
                     <td key="city">{obj.city}</td>
@@ -79,7 +81,7 @@ class DataTable extends Component {
                     <td key="tax">{obj.taxPercent}</td>
                     <td key="wage">{obj.hourWage}</td>
                     <td key="username">{obj.username}</td>
-                </tr>);
+                </tr>;
         });
 
     }
@@ -90,8 +92,7 @@ class DataTable extends Component {
 
         return tmp.filter(
             function (obj) {
-                return obj.client.includes(searchInput) ||
-                        obj.quality.includes(searchInput)
+                return true;
             }
         ).map(function (obj) {
             return <tr key={obj.id}>

@@ -24,10 +24,6 @@ class Workers extends Component {
         }
     }
 
-    componentDidMount(){
-
-    }
-
     render() {
         console.log("Workers searchinput: "+this.props.searchInput);
         return (

@@ -28,7 +28,7 @@ class HourEntries extends Component {
     render() {
         return (
             <div  className="hourEntries">
-                <DataTable type="entries" data={this.state.data} headers={this.state.headers}/>
+                <DataTable type="entries" searchInput={this.props.searchInput} data={this.state.data} headers={this.state.headers}/>
             </div>
         );
     }
