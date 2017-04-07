@@ -17,6 +17,12 @@ class DataTable extends Component {
         this.setUpHeaders = this.setUpHeaders.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data: nextProps.data
+        });
+    }
+
     setUpHeaders() {
 
         let arr = this.state.headers.map(function (head) {
@@ -43,7 +49,6 @@ class DataTable extends Component {
     setCustomers() {
         const tmp = this.state.data;
         const searchInput = this.props.searchInput;
-        console.log("Customers searchInput: " + searchInput);
 
         return tmp.filter(function (obj) {
             console.log(obj.name);
@@ -63,9 +68,6 @@ class DataTable extends Component {
     setWorkers() {
         const tmp = this.state.data;
         const searchInput = this.props.searchInput;
-
-        console.log(this.props.searchInput);
-        console.log("DataTable search: " + this.props.searchInput);
 
         return tmp.filter(function (obj) {
             return obj.firstName.toLowerCase().includes(searchInput.toLowerCase()) ||

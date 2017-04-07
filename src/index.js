@@ -15,9 +15,9 @@ import { homeReducer } from './reducers/index';
 import { checkAuth } from './utils/checkAuth';
 import cookie from 'react-cookie';
 import {SET_AUTH} from './constants/AppConstants';
-import Customers from './views/management/Customers';
-import Workers from './views/management/Workers';
-import HourEntries from './views/management/HourEntries';
+import Customers from './views/management/managementComponents/Customers';
+import Workers from './views/management/managementComponents/Workers';
+import HourEntries from './views/management/managementComponents/HourEntries';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(homeReducer);
@@ -45,20 +45,5 @@ ReactDOM.render(
             </Route>
         </Router>
     </Provider>,
-    <Router history={browserHistory}>
-
-        <Route path="/" component={App}>
-            <IndexRoute component={HourEntry}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/home" component={HourEntry}/>
-            <Route path="/paychecks" component={Paychecks}/>
-            <Route path="/management" component={Management}>
-                <IndexRoute component={HourEntries}/>
-                <Route path="/management/workers" component={Workers}/>
-                <Route path="/management/customers" component={Customers}/>
-                <Route path="/management/entries"  component={HourEntries}/>
-            </Route>
-        </Route>
-    </Router>,
   document.getElementById('root')
 );

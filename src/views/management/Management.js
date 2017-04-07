@@ -58,8 +58,6 @@ class Management extends Component {
 
         return React.Children.map(this.props.children, child => {
 
-            console.log("Management state searchInput: " + this.state.searchInput);
-
             return React.cloneElement(child, {
                 workerData: wData,
                 clientData: cData,
@@ -70,6 +68,7 @@ class Management extends Component {
     }
 
     render() {
+
         return (
             <div  className="management">
                 <div className="management-nav">

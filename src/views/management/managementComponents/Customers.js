@@ -23,6 +23,12 @@ class Customers extends Component {
         console.log(this.state.data);
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data : nextProps.clientData
+        });
+    }
+
     render() {
         return (
             <div  className="customers">

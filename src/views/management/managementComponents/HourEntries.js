@@ -1,6 +1,4 @@
 /**
- * Created by Micky on 29.3.2017.
- *//**
  * Created by mickykyei on 9.3.2017.
  */
 import React, { Component } from 'react';
@@ -24,7 +22,11 @@ class HourEntries extends Component {
 
         console.log(this.state.data);
     }
-
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data : nextProps.entryData
+        });
+    }
     render() {
         return (
             <div  className="hourEntries">

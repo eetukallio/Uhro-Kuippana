@@ -24,8 +24,14 @@ class Workers extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data : nextProps.workerData
+        });
+    }
+
     render() {
-        console.log("Workers searchinput: "+this.props.searchInput);
+        console.log("Workers data: "+this.state.data);
         return (
             <div  className="workers">
                 <DataTable type="workers" searchInput={this.props.searchInput}
