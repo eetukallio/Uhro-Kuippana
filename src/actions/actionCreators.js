@@ -6,7 +6,7 @@ import cookie from 'react-cookie';
 export function login(username, password) {
     return function(dispatch) {
 
-        axios.post("http://localhost:8080/api/auth/login", {username, password})
+        axios.post("http://207.154.228.188:3000/api/auth/login", {username, password})
             .then(res => {
                 console.log(res);
                 cookie.save('token', res.data.token, {path: '/'});

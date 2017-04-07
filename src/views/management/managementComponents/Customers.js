@@ -10,7 +10,7 @@ class Customers extends Component {
         super(props);
 
         this.state = {
-            data : props.clientData,
+            data : [],
             headers: [
                 "Nimi",
                 "Osoite",
@@ -20,10 +20,27 @@ class Customers extends Component {
             ]
         };
 
+        this.fetchData = this.fetchData.bind(this);
+
         console.log(this.state.data);
     }
 
+    fetchData() {
+        fetch("http://207.154.228.188:3000/clients")
+            .then( (response) => {
+                return response.json() })
+            .then( (json) => {
+                this.setState({data: json});
+            });
+    }
+
+    componentDidMount() {
+
+        this.fetchData();
+    }
+
     render() {
+
         return (
             <div  className="customers">
                 <DataTable type="customers" searchInput={this.props.searchInput} data={this.state.data} headers={this.state.headers}/>

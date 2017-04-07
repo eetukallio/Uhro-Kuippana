@@ -12,7 +12,7 @@ class HourEntries extends Component {
         super(props);
 
         this.state = {
-            data : props.entryData,
+            data : [],
             headers: [
                 "Asiakas",
                 "Työntekijä",
@@ -22,13 +22,32 @@ class HourEntries extends Component {
             ]
         }
 
+        this.fetchData = this.fetchData.bind(this);
+
         console.log(this.state.data);
     }
 
+    componentDidMount() {
+
+        this.fetchData();
+    }
+
+    fetchData() {
+        fetch("http://207.154.228.188:3000/workOrders")
+            .then( (response) => {
+                return response.json() })
+            .then( (json) => {
+                this.setState({entryData: json});
+            });
+
+    }
+
     render() {
+
         return (
             <div  className="hourEntries">
-                <DataTable type="entries" searchInput={this.props.searchInput} data={this.state.data} headers={this.state.headers}/>
+                <DataTable type="entries" searchInput={this.props.searchInput}
+                           data={this.state.data} headers={this.state.headers}/>
             </div>
         );
     }
