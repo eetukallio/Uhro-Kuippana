@@ -28,7 +28,7 @@ class HourEntries extends Component {
     }
 
     componentDidMount() {
-
+        console.log("starting fetch")
         this.fetchData();
     }
 
@@ -37,9 +37,8 @@ class HourEntries extends Component {
             .then( (response) => {
                 return response.json() })
             .then( (json) => {
-                this.setState({entryData: json});
+                this.setState({data: json});
             });
-
     }
 
     render() {

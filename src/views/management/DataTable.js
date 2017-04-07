@@ -9,10 +9,10 @@ class DataTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: props.data,
-            headers: props.headers,
-            type: props.type
-        }
+            headers: this.props.headers,
+            type: this.props.type
+        };
+
         this.setUpTable = this.setUpTable.bind(this);
         this.setUpHeaders = this.setUpHeaders.bind(this);
         this.setWorkers = this.setWorkers.bind(this);
@@ -44,7 +44,7 @@ class DataTable extends Component {
     }
 
     setCustomers() {
-        let tmp = this.state.data;
+        let tmp = this.props.data;
         const searchInput = this.props.searchInput;
         console.log("Customers data: " + this.state.data);
 
@@ -65,13 +65,11 @@ class DataTable extends Component {
 
     setWorkers() {
 
-        console.log("setWorkers")
-        const tmp = this.state.data;
+        const tmp = this.props.data;
         const searchInput = this.props.searchInput;
-        console.log("Workers data: " + this.props.data);
+        console.log("Workers data: ");
 
-        console.log(this.state.data + " state.data")
-        console.log(tmp + " tmp");
+        console.log(tmp)
 
         return tmp.filter(function (obj) {
             console.log("filter")
@@ -95,14 +93,13 @@ class DataTable extends Component {
     }
 
     setEntries() {
-        const tmp = this.state.data;
+        const tmp = this.props.data;
         const searchInput = this.props.searchInput;
 
-        console.log(this.state.data)
-        console.log("Entries data: " + this.state.data );
 
-        return tmp.filter(
-            function (obj) {
+        console.log("Entries data: ");
+        console.log(this.props.data);
+        return tmp.filter( function (obj) {
                 return true;
             }
         ).map(function (obj) {
@@ -116,16 +113,7 @@ class DataTable extends Component {
         });
     }
 
-    componentDidUpdate() {
-
-        console.log("Datatable didupdate:");
-        console.log(this.state.data);
-    }
-
-
     render() {
-
-        console.log(this.props.data + " DataTable")
         return (
             <Table striped bordered condensed hover>
                 <thead>

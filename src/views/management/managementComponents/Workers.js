@@ -34,7 +34,6 @@ class Workers extends Component {
                 console.log("fetch done");
                 console.log(json)
                 this.setState({data: [...json]});
-                console.log(this.state.data);
             });
     }
 
@@ -46,8 +45,8 @@ class Workers extends Component {
     }
 
     render() {
-        console.log("Workers searchinput: "+this.props.searchInput);
 
+        console.log("render workers data:")
         console.log(this.state.data);
 
         return (
