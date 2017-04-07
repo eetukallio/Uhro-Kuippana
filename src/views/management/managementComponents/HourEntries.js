@@ -5,7 +5,7 @@
  */
 import React, { Component } from 'react';
 import './HourEntries.css';
-import DataTable from './DataTable';
+import DataTable from '../DataTable';
 
 class HourEntries extends Component {
     constructor(props) {

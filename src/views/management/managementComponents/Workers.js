@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import './Workers.css';
-import DataTable from './DataTable';
+import DataTable from '../DataTable';
 
 class Workers extends Component {
     constructor(props) {
