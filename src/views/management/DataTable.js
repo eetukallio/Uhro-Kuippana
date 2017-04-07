@@ -104,8 +104,8 @@ class DataTable extends Component {
             }
         ).map(function (obj) {
             return <tr key={obj.id}>
-                <td key="user">{obj.user} </td>
-                <td key="client">{obj.client}</td>
+                <td key="user">{obj.clientName} </td>
+                <td key="client">{obj.fullName}</td>
                 <td key="date">{obj.date}</td>
                 <td key="duration">{obj.duration}</td>
                 <td key="quality">{obj.quality}</td>
