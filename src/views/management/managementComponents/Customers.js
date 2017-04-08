@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import './Customers.css';
 import DataTable from '../DataTable';
+import axios from 'axios';
 
 class Customers extends Component {
     constructor(props) {
@@ -26,11 +27,11 @@ class Customers extends Component {
     }
 
     fetchData() {
-        fetch("http://207.154.228.188:3000/clients")
-            .then( (response) => {
-                return response.json() })
-            .then( (json) => {
-                this.setState({data: json});
+        axios.get("/clients")
+            .then( (res) => {
+                console.log("fetch done");
+                console.log(res.data);
+                this.setState({data: res.data});
             });
     }
 
