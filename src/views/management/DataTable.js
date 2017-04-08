@@ -69,10 +69,10 @@ class DataTable extends Component {
         const searchInput = this.props.searchInput;
         console.log("Workers data: ");
 
-        console.log(tmp)
+        console.log(tmp);
 
         return tmp.filter(function (obj) {
-            console.log("filter")
+            console.log("filter");
 
             return obj.firstName.toLowerCase().includes(searchInput.toLowerCase()) ||
                 obj.lastName.toLowerCase().includes(searchInput.toLowerCase()) ||
@@ -95,7 +95,6 @@ class DataTable extends Component {
     setEntries() {
         const tmp = this.props.data;
         const searchInput = this.props.searchInput;
-
 
         console.log("Entries data: ");
         console.log(this.props.data);
