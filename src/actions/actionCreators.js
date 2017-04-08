@@ -6,9 +6,9 @@ import cookie from 'react-cookie';
 export function login(username, password) {
     return function(dispatch) {
 
-        axios.post("http://207.154.228.188:3000/api/auth/login", {username, password})
+        axios.post("/api/auth/login", {username, password})
             .then(res => {
-                console.log(res);
+                console.log(res.data.token);
                 cookie.save('token', res.data.token, {path: '/'});
                 dispatch({type: SET_AUTH});
                 browserHistory.push("/home");
