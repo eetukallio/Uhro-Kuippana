@@ -25,9 +25,7 @@ export function homeReducer(state = initialState, action) {
         case UNAUTH_USER:
             return {...state, loggedIn: false};
         case SENDING_REQUEST:
-            return assign({}, state, {
-                currentlySending: action.sending
-            });
+            return {...state, currentlySending: action.sending };
         case SET_ERROR_MESSAGE:
             return assign({}, state, {
                 errorMessage: action.message

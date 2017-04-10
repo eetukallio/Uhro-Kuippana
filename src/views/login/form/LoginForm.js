@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Form, FormControl, ControlLabel, FormGroup } from 'react-bootstrap';
+import LoadingButton from './LoadingButton';
 
 class LoginForm extends React.Component {
 
@@ -28,9 +29,13 @@ class LoginForm extends React.Component {
 
                         </Col>
                         <Col xs={1} sm={1}>
-                            <Button type="submit">
-                                Kirjaudu
-                            </Button>
+                            <div className="form__submit-btn-wrapper">
+                                {this.props.currentlySending ? (
+                                        <LoadingButton />
+                                    ) : (
+                                        <Button type="submit">{this.props.btnText}</Button>
+                                    )}
+                            </div>
                         </Col>
                     </FormGroup>
                     <p style={{color: "red"}}>{this.props.errorMessage}</p>

@@ -14,7 +14,7 @@ class Login extends React.Component {
         return <LoginForm
             data={formState}                    onChange={this.props.changeForm}
             location={location}                 history={this.props.history}
-            onSubmit={this.login.bind(this)}    btnText={"Login"}
+            onSubmit={this.login.bind(this)}    btnText={"Kirjaudu"}
             currentlySending={currentlySending} errorMessage={this.props.data.errorMessage}
         />
     }

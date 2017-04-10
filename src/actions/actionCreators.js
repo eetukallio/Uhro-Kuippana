@@ -5,15 +5,20 @@ import cookie from 'react-cookie';
 
 export function login(username, password) {
     return function(dispatch) {
+        dispatch(sendingRequest(true));
 
         axios.post("http://207.154.228.188:3000/api/auth/login", {username, password})
             .then(res => {
                 console.log(res);
                 cookie.save('token', res.data.token, {path: '/'});
+                dispatch(sendingRequest(false));
                 dispatch({type: SET_AUTH});
                 browserHistory.push("/home");
             })
-            .catch(err => console.log(err));
+            .catch((err) => {
+                dispatch(sendingRequest(false));
+                console.log(err)
+            });
     }
 }
 
