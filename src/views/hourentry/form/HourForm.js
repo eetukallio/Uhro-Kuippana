@@ -6,12 +6,42 @@ class HourForm extends React.Component {
     render() {
         return (
                 <Form horizontal>
-                    <FormGroup controlId="hoursField">
+                    <FormGroup controlId="dateField">
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Tunnit
+                            Päivämäärä
                         </Col>
                         <Col xs={8} sm={4}>
-                            <FormControl type="number" required />
+                            <FormControl type="date" />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="hoursField">
+                        <Col componentClass={ControlLabel} xs={3} sm={4}>
+                            Työaika
+                        </Col>
+                        <Col xs={8} sm={4}>
+                            <FormControl type="number"
+                                         placeholder="Ilmoita työaika tunteina, desimaalein. (esim. 6,75h = 6h 45min)"/>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="distanceField">
+                        <Col componentClass={ControlLabel}
+                             xs={3} sm={4}>
+                            Kilometrit
+                        </Col>
+                        <Col xs={8} sm={4}>
+                            <FormControl type="number"
+                                         placeholder="Kilometrit työpaikalle omalla autolla"
+                            />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="clientField">
+                        <Col componentClass={ControlLabel} xs={3} sm={4}>
+                            Asiakas
+                        </Col>
+                        <Col xs={8} sm={4}>
+                            <FormControl type="text"
+                                         placeholder="Asiakkaan/asiakasyrityksen nimi"
+                                         required/>
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="workTypeField">
@@ -27,22 +57,6 @@ class HourForm extends React.Component {
                                 <option value="z">Nyt</option>
                                 <option value="i">On</option>
                             </FormControl>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="clientField">
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Asiakas
-                        </Col>
-                        <Col xs={8} sm={4}>
-                            <FormControl type="text" required/>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="dateField">
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Päivämäärä
-                        </Col>
-                        <Col xs={8} sm={4}>
-                            <FormControl type="date" />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="infoField">

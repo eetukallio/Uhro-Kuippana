@@ -3,3 +3,8 @@
     margin: auto;
     padding: 1em;
 }
+
+::-webkit-input-placeholder {
+    font-size: smaller;
+    color: #eeeeee;
+}
