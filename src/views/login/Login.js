@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {login, changeForm} from '../../actions/actionCreators';
+import {login, changeForm} from '../../actions/auth';
 import LoginForm from './form/LoginForm';
 import './Login.css'
 
@@ -22,7 +22,7 @@ class Login extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        data: state
+        data: state.auth
     }
 }
 

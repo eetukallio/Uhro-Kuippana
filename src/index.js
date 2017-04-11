@@ -11,7 +11,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { browserHistory } from 'react-router';
-import { homeReducer } from './reducers/index';
+import rootReducer from './reducers/index';
 import { checkAuth } from './utils/checkAuth';
 import cookie from 'react-cookie';
 import {SET_AUTH} from './constants/AppConstants';
@@ -20,7 +20,7 @@ import Workers from './views/management/managementComponents/Workers';
 import HourEntries from './views/management/managementComponents/HourEntries';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(homeReducer);
+const store = createStoreWithMiddleware(rootReducer);
 
 const token = cookie.load('token');
 

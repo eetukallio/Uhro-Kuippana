@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Nav.css';
 import {Link} from 'react-router';
 import { connect } from 'react-redux';
-import { logout } from '../actions/actionCreators';
+import { logout } from '../actions/auth';
 // import logo from '../images/urho-logo.png';
 
 class Nav extends Component {
@@ -33,7 +33,7 @@ class Nav extends Component {
 // Which props do we want to inject, given the global state?
 function mapStateToProps(state) {
     return {
-        loggedIn: state.loggedIn
+        loggedIn: state.auth.loggedIn
     }
 }
 

@@ -27,8 +27,8 @@ export const checkAuth = (ChildComponent) => {
     }
 
     function mapStateToProps(state) {
-        console.log(state.loggedIn);
-        return { isAuthenticated: state.loggedIn }
+        console.log(state.auth.loggedIn);
+        return { isAuthenticated: state.auth.loggedIn }
     }
 
     return connect(mapStateToProps)(Authenticate);
