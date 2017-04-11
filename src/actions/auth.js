@@ -8,9 +8,10 @@ export function login(username, password) {
         dispatch(sendingRequest(true));
 
         axios.post("http://207.154.228.188:3000/api/auth/login", {username, password})
-            .then(res => {
+            .then((res) => {
                 console.log(res);
                 cookie.save('token', res.data.token, {path: '/'});
+                cookie.save('user', res.data.user, {path: '/'});
                 dispatch(sendingRequest(false));
                 dispatch({type: SET_AUTH});
                 browserHistory.push("/home");
@@ -58,7 +59,6 @@ export function changeForm(newState) {
 export function sendingRequest(sending) {
     return { type: SENDING_REQUEST, sending };
 }
-
 
 /**
  * Sets the errorMessage state, which displays the ErrorMessage component when it is not empty
