@@ -17,9 +17,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case CHANGE_FORM:
-            return assign({}, state, {
-                formState: action.newState
-            });
+            return {...state, formState: action.newState};
         case SET_AUTH:
             return {...state, errorMessage: '', formState: {username: '', password: ''}, loggedIn: true};
         case UNAUTH_USER:
