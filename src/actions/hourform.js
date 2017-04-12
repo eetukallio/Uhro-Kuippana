@@ -1,42 +1,20 @@
-import { SET_AUTH, UNAUTH_USER, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
-import { browserHistory } from 'react-router';
+import { CHANGE_HOURS_FORM, SENDING_FORM, SET_ERROR_MESSAGE } from '../constants/AppConstants';
 import axios from 'axios';
-import cookie from 'react-cookie';
 
-export function login(username, password) {
+export function submit(formData) {
     return function(dispatch) {
         dispatch(sendingRequest(true));
 
-        axios.post("http://207.154.228.188:3000/api/auth/login", {username, password})
+        axios.post("http://207.154.228.188:3000/workorders", JSON.stringify(formData), {headers: {'Content-Type': 'application/json'}})
             .then(res => {
                 console.log(res);
-                cookie.save('token', res.data.token, {path: '/'});
                 dispatch(sendingRequest(false));
-                dispatch({type: SET_AUTH});
-                browserHistory.push("/home");
             })
             .catch((err) => {
                 dispatch(sendingRequest(false));
                 console.log(err)
             });
     }
-}
-
-//logout
-export function logout() {
-    return function (dispatch) {
-        dispatch({type: UNAUTH_USER});
-        cookie.remove('token', {path: '/'});
-        browserHistory.push("/login");
-    }
-}
-
-/**
- * Sets the authentication state of the application
- * @param {boolean} newState True means a user is logged in, false means no user is logged in
- */
-export function setAuthState(newState) {
-    return { type: SET_AUTH, newState };
 }
 
 /**
@@ -47,7 +25,7 @@ export function setAuthState(newState) {
  * @return {object}                   Formatted action for the reducer to handle
  */
 export function changeForm(newState) {
-    return { type: CHANGE_FORM, newState };
+    return { type: CHANGE_HOURS_FORM, newState };
 }
 
 /**
@@ -56,7 +34,7 @@ export function changeForm(newState) {
  * @return {object}          Formatted action for the reducer to handle
  */
 export function sendingRequest(sending) {
-    return { type: SENDING_REQUEST, sending };
+    return { type: SENDING_FORM, sending };
 }
 
 /**
@@ -82,13 +60,4 @@ function setErrorMessage(message) {
             }, 3000);
         }
     }
-}
-
-/**
- * Forwards the user
- * @param {string} location The route the user should be forwarded to
- */
-function forwardTo(location) {
-    console.log('forwardTo(' + location + ')');
-    browserHistory.push(location);
 }
