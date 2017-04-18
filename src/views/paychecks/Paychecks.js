@@ -20,7 +20,6 @@ class Paychecks extends Component {
         axios.get('/users/' + this.state.userId.id)
             .then((res) => {
                 console.log("fetch done");
-                console.log(res.data);
                 this.setState({user: res.data});
             });
 
@@ -28,14 +27,9 @@ class Paychecks extends Component {
 
         axios.get('/workorders')
             .then((res) => {
-                console.log(res.data);
-                console.log(userId)
                 const tmp = res.data.filter(obj =>
                 obj.userId === userId);
                 this.setState({entries: tmp});
-            })
-            .then(() => {
-                console.log(this.state.entries);
             });
     }
 
@@ -45,6 +39,10 @@ class Paychecks extends Component {
 
 
     render() {
+
+        console.log(this.state.user);
+        console.log(this.state.entries);
+
         return (
             <div  className="paychecks">
                 <Paycheck user = {this.state.user} entries = {this.state.entries} />

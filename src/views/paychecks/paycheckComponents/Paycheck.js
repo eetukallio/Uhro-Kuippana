@@ -3,21 +3,24 @@
  */
 
 import React, { Component } from 'react';
+
 class Paycheck extends Component {
+
     constructor(props) {
         super(props);
-        this.state = {
-            headers: this.props.headers,
-            type: this.props.type
-        };
     }
 
     render() {
-        return (
-            <div className="paycheck">
 
-            </div>
-        )
+        if (this.props.user !== undefined) {
+            return (
+                <div className="paycheck">
+                    <h1>{this.props.user.username}</h1>
+                </div>
+            );
+        } else {
+            return <p>Nothing here</p>
+        }
     }
 }
 export default Paycheck;
