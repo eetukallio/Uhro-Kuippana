@@ -42,8 +42,8 @@ ReactDOM.render(
                 <Route path="/management" component={checkAuth(Management)}>
                     <IndexRoute component={HourEntries}/>
                     <Route path="/management/workers" component={Workers}/>
-                    <Route path="/management/customers" component={Customers}  token={token}/>
-                    <Route path="/management/entries"  component={HourEntries}  token={token}/>
+                    <Route path="/management/customers" component={Customers}  />
+                    <Route path="/management/entries"  component={HourEntries}  />
                 </Route>
             </Route>
         </Router>

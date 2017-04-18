@@ -20,6 +20,7 @@ class HourEntries extends Component {
                 "Päivämäärä",
                 "Kesto",
                 "Työnlaatu",
+                "Huomioitavaa"
             ]
         }
 

@@ -108,6 +108,7 @@ class DataTable extends Component {
                 <td key="date">{obj.date}</td>
                 <td key="duration">{obj.duration}</td>
                 <td key="quality">{obj.quality}</td>
+                <td key="additionalInfo">{obj.additionalInfo} </td>
             </tr>
         });
     }
