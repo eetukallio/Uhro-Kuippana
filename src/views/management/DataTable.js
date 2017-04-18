@@ -105,7 +105,7 @@ class DataTable extends Component {
             return <tr key={obj.id}>
                 <td key="user">{obj.clientName} </td>
                 <td key="client">{obj.fullName}</td>
-                <td key="date">{obj.date}</td>
+                <td key="date">{obj.date.split('T')[0]}</td>
                 <td key="duration">{obj.duration}</td>
                 <td key="quality">{obj.quality}</td>
                 <td key="additionalInfo">{obj.additionalInfo} </td>
