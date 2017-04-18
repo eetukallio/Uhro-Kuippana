@@ -10,6 +10,7 @@ export function login(username, password) {
             .then(res => {
                 console.log(res.data.token);
                 cookie.save('token', res.data.token, {path: '/'});
+                cookie.save('user', res.data.user, {path: '/'});
                 dispatch({type: SET_AUTH});
                 browserHistory.push("/home");
             })
