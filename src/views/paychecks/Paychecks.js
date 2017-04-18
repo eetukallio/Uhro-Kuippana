@@ -7,7 +7,7 @@ import Paycheck from './paycheckComponents/Paycheck';
 class Paychecks extends Component {
 
     constructor () {
-        super.constructor();
+        super(props);
         this.state = {
             user: cookie.load('user')
         }
