@@ -1,4 +1,4 @@
-import { CHANGE_HOURS_FORM, SENDING_FORM, SET_ERROR_MESSAGE } from '../constants/AppConstants';
+import { CHANGE_HOURS_FORM, SENDING_FORM, SET_ERROR_MESSAGE, HOURS_SENT, OTHER_CLIENT, OTHER_QUALITY } from '../constants/AppConstants';
 import axios from 'axios';
 
 export function submit(formData) {
@@ -7,13 +7,77 @@ export function submit(formData) {
 
         axios.post("http://207.154.228.188:3000/workorders", JSON.stringify(formData), {headers: {'Content-Type': 'application/json'}})
             .then(res => {
-                console.log(res);
+                console.log("SENT " + res);
+                dispatch(hourSent());
                 dispatch(sendingRequest(false));
             })
             .catch((err) => {
                 dispatch(sendingRequest(false));
-                console.log(err)
+                console.log(err);
             });
+    }
+}
+
+export function addQuality(addQuality, formData) {
+    const sendData = {"name": addQuality};
+    console.log(sendData);
+
+    return function (dispatch) {
+        axios.post("http://207.154.228.188:3000/qualities", sendData, {headers: {'Content-Type': 'application/json'}})
+            .then((res) => {
+                console.log("In addQuality function" + res.data.insertId);
+                return res.data.insertId;
+            })
+            .then((res) => {
+                const newForm = Object.assign(formData, {quality: res});
+                console.log(newForm);
+                dispatch(submit(newForm))})
+            .catch(err => console.log(err));
+    }
+}
+
+export function addClient(addClient, formData) {
+    const sendData = {"name": addClient};
+    console.log(sendData);
+
+    return function (dispatch) {
+        axios.post("http://207.154.228.188:3000/clients", sendData, {headers: {'Content-Type': 'application/json'}})
+            .then((res) => {
+                console.log("In addClient function" + res.data.insertId);
+                return res.data.insertId;
+            })
+            .then((res) => {
+                const newForm = Object.assign(formData, {client: res});
+                console.log(newForm);
+                dispatch(submit(newForm))})
+            .catch(err => console.log(err));
+    }
+}
+
+export function addBoth(addClient, addQuality, formData) {
+    const sendClientData = {"name": addClient};
+    const sendQualityData = {"name": addQuality};
+    let clientInsertId, qualityInsertId;
+
+    return function (dispatch) {
+        axios.post("http://207.154.228.188:3000/clients", sendClientData, {headers: {'Content-Type': 'application/json'}})
+            .then((res) => {
+                clientInsertId = res.data.insertId;
+            })
+            .then((res) => {
+                axios.post("http://207.154.228.188:3000/qualities", sendQualityData, {headers: {'Content-Type': 'application/json'}})
+                    .then((res) => {
+                        console.log(res.data.insertId);
+                        qualityInsertId = res.data.insertId;
+                    })
+                    .then((res) => {
+                        console.log(qualityInsertId + " " + clientInsertId);
+                        const add = Object.assign(formData, {client: clientInsertId, quality: qualityInsertId});
+                        console.log(add);
+                        dispatch(submit(add));
+                    }).catch(err => console.log(err))
+            })
+            .catch(err => console.log(err));
     }
 }
 
@@ -28,6 +92,14 @@ export function changeForm(newState) {
     return { type: CHANGE_HOURS_FORM, newState };
 }
 
+export function otherClient(newState) {
+    return { type: OTHER_CLIENT, newState}
+}
+
+export function otherQuality(newState) {
+    return { type: OTHER_QUALITY, newState}
+}
+
 /**
  * Sets the requestSending state, which displays a loading indicator during requests
  * @param  {boolean} sending The new state the app should have
@@ -35,6 +107,10 @@ export function changeForm(newState) {
  */
 export function sendingRequest(sending) {
     return { type: SENDING_FORM, sending };
+}
+
+export function hourSent() {
+    return { type: HOURS_SENT };
 }
 
 /**
