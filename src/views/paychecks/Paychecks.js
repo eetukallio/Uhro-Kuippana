@@ -25,7 +25,6 @@ class Paychecks extends Component {
                 console.log("fetch done");
                 this.setState({user: res.data[0]});
             });
-
         const userId = this.state.userId.id;
 
         axios.get('/workorders')

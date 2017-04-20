@@ -3,10 +3,12 @@
  */
 
 import React, { Component } from 'react';
+import './Paycheck.css';
 
 class Paycheck extends Component {
 
     constructor(props) {
+
         super(props);
         this.state = {
             user: {},
@@ -43,15 +45,31 @@ class Paycheck extends Component {
         }
     }
 
+    setPaychecks() {
+
+        return <div className="paycheckSheet">
+            <div className="personalInfo">
+                <span id="name">{this.state.firstName + " " + this.state.lastName}</span><br />
+                <span className="additionalInfo">{this.state.streetAddress}</span><br />
+                <span className="additionalInfo">{this.state.zipCode}</span><br />
+                <span className="additionalInfo">{this.state.city}</span>
+            </div>
+            <div className="paymentInfo">
+                <p>
+                    {'Tuntipalkka: ' +this.state.hourWage}
+                </p>
+            </div>
+        </div>;
+    }
+
     render() {
         console.log(this.state.user);
         console.log(this.state.entries);
         return (
             <div className="paycheck">
-                <h1>{this.state.firstName}</h1>
+                {this.setPaychecks()}
             </div>
         );
     }
-
 }
 export default Paycheck;
