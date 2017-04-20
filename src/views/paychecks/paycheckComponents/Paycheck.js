@@ -47,21 +47,38 @@ class Paycheck extends Component {
 
     setPaychecks() {
 
-        return <div className="paycheckSheet">
-            <div className="personalInfo">
-                <span id="name">{this.state.firstName + " " + this.state.lastName}</span><br />
-                <span className="additionalInfo">{this.state.streetAddress}</span><br />
-                <span className="additionalInfo">{this.state.zipCode}</span><br />
-                <span className="additionalInfo">{this.state.city}</span>
-            </div>
-            <div className="paymentInfo">
-                <p>
-                    {'Tuntipalkka: ' +this.state.hourWage}
-                </p>
-            </div>
-        </div>;
-    }
+        if (this.state.entries !== [] && this.state.entries !== {}) {
+            const tmp = this.state.entries.map( obj => {
+                const dateSplit = obj.date.split('-');
+                const day = dateSplit[2].split('T')[0];
+                const month = dateSplit[1];
+                const year = dateSplit[0];
+                obj.date = new Date(year, month-1, day);
+                console.log(obj.date);
+                return obj;
+            });
 
+            return <div className="paycheckSheet">
+                <div className="personalInfo">
+                    <span id="name">{this.state.firstName + " " + this.state.lastName}</span><br />
+                    <span className="additionalInfo">{this.state.streetAddress}</span><br />
+                    <span className="additionalInfo">{this.state.zipCode}</span><br />
+                    <span className="additionalInfo">{this.state.city}</span>
+                </div>
+                <div className="paymentInfo">
+                    <p>
+                        {'Tuntipalkka: ' +this.state.hourWage}
+                    </p>
+                    <p>
+                        {'Veroprosentti: ' +this.state.taxPercent}
+                    </p>
+                    <p>
+                        {'Arvioitu palkka: ' +this.state.hourWage}
+                    </p>
+                </div>
+            </div>;
+        } else return <p>Loading</p>;
+    }
     render() {
         console.log(this.state.user);
         console.log(this.state.entries);

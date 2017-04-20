@@ -35,7 +35,6 @@ class Paychecks extends Component {
             });
     }
 
-
     componentDidMount() {
         this.fetchData();
     }
