@@ -7,7 +7,7 @@ export function login(username, password) {
     return function(dispatch) {
         dispatch(sendingRequest(true));
 
-        axios.post("http://207.154.228.188:3000/api/auth/login", {username, password})
+        axios.post("api/auth/login", {username, password})
             .then((res) => {
                 console.log(res);
                 cookie.save('token', res.data.token, {path: '/'});

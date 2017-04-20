@@ -103,8 +103,8 @@ class DataTable extends Component {
                     obj.fullName.toLowerCase().includes(searchInput.toLowerCase()) ||
                     obj.date.split('T')[0].toLowerCase().includes(searchInput.toLowerCase());
             }
-        ).map(function (obj) {
-            return <tr key={obj.id}>
+        ).map(function (obj, i) {
+            return <tr key={i}>
                 <td key="user">{obj.clientName} </td>
                 <td key="client">{obj.fullName}</td>
                 <td key="date">{obj.date.split('T')[0]}</td>

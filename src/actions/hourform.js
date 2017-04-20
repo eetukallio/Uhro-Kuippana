@@ -5,7 +5,7 @@ export function submit(formData) {
     return function(dispatch) {
         dispatch(sendingRequest(true));
 
-        axios.post("http://207.154.228.188:3000/workorders", JSON.stringify(formData), {headers: {'Content-Type': 'application/json'}})
+        axios.post("/workorders", JSON.stringify(formData), {headers: {'Content-Type': 'application/json'}})
             .then(res => {
                 console.log("SENT " + res);
                 dispatch(hourSent());
@@ -23,7 +23,7 @@ export function addQuality(addQuality, formData) {
     console.log(sendData);
 
     return function (dispatch) {
-        axios.post("http://207.154.228.188:3000/qualities", sendData, {headers: {'Content-Type': 'application/json'}})
+        axios.post("/qualities", sendData, {headers: {'Content-Type': 'application/json'}})
             .then((res) => {
                 console.log("In addQuality function" + res.data.insertId);
                 return res.data.insertId;
@@ -41,7 +41,7 @@ export function addClient(addClient, formData) {
     console.log(sendData);
 
     return function (dispatch) {
-        axios.post("http://207.154.228.188:3000/clients", sendData, {headers: {'Content-Type': 'application/json'}})
+        axios.post("/clients", sendData, {headers: {'Content-Type': 'application/json'}})
             .then((res) => {
                 console.log("In addClient function" + res.data.insertId);
                 return res.data.insertId;
@@ -60,12 +60,12 @@ export function addBoth(addClient, addQuality, formData) {
     let clientInsertId, qualityInsertId;
 
     return function (dispatch) {
-        axios.post("http://207.154.228.188:3000/clients", sendClientData, {headers: {'Content-Type': 'application/json'}})
+        axios.post("/clients", sendClientData, {headers: {'Content-Type': 'application/json'}})
             .then((res) => {
                 clientInsertId = res.data.insertId;
             })
             .then((res) => {
-                axios.post("http://207.154.228.188:3000/qualities", sendQualityData, {headers: {'Content-Type': 'application/json'}})
+                axios.post("/qualities", sendQualityData, {headers: {'Content-Type': 'application/json'}})
                     .then((res) => {
                         console.log(res.data.insertId);
                         qualityInsertId = res.data.insertId;

@@ -20,7 +20,7 @@ class Paycheck extends Component {
         console.log(this.props.entries);
         console.log(this.props.user);
 
-        const tmp = this.props.entries.map( obj => {
+        const dateFormatTmp = this.props.entries.map( obj => {
             const dateSplit = obj.date.split('-');
             const day = dateSplit[2].split('T')[0];
             const month = dateSplit[1];
@@ -97,7 +97,7 @@ class Paycheck extends Component {
 
 Paycheck.propTypes = {
     user: React.PropTypes.object.isRequired,
-    entries: React.PropTypes.object.isRequired
+    entries: React.PropTypes.array.isRequired
 };
 
 export default Paycheck;
