@@ -45,7 +45,8 @@ class Management extends Component {
                     </ul>
                 </div>
                 <div className="searchBar">
-                    <input onChange={this.handleSearchInput.bind(this)} />
+                    <span className="glyphicon glyphicon-search"/>
+                    <input className="inputField" onChange={this.handleSearchInput.bind(this)} />
                 </div>
                 <div className="content">
                     {this.renderChildren()}

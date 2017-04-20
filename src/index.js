@@ -18,6 +18,7 @@ import {SET_AUTH} from './constants/AppConstants';
 import Customers from './views/management/managementComponents/Customers';
 import Workers from './views/management/managementComponents/Workers';
 import HourEntries from './views/management/managementComponents/HourEntries';
+import axios from 'axios';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
@@ -25,8 +26,11 @@ const store = createStoreWithMiddleware(rootReducer);
 const token = cookie.load('token');
 
 if (token) {
-    store.dispatch({type: SET_AUTH})
+    store.dispatch({type: SET_AUTH});
+    axios.defaults.headers.common['Authorization'] = token;
 }
+
+axios.defaults.baseURL = 'http://207.154.228.188:3000';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -39,8 +43,8 @@ ReactDOM.render(
                 <Route path="/management" component={checkAuth(Management)}>
                     <IndexRoute component={HourEntries}/>
                     <Route path="/management/workers" component={Workers}/>
-                    <Route path="/management/customers" component={Customers}/>
-                    <Route path="/management/entries"  component={HourEntries}/>
+                    <Route path="/management/customers" component={Customers}  />
+                    <Route path="/management/entries"  component={HourEntries}  />
                 </Route>
             </Route>
         </Router>

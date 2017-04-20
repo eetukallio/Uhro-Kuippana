@@ -9,30 +9,27 @@ class DataTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: props.data,
-            headers: props.headers,
-            type: props.type
-        }
+            headers: this.props.headers,
+            type: this.props.type
+        };
+
         this.setUpTable = this.setUpTable.bind(this);
         this.setUpHeaders = this.setUpHeaders.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            data: nextProps.data
-        });
+        this.setWorkers = this.setWorkers.bind(this);
+        this.setEntries = this.setEntries.bind(this);
+        this.setCustomers = this.setCustomers.bind(this);
     }
 
     setUpHeaders() {
 
         let arr = this.state.headers.map(function (head) {
-            return <th>{head}</th>;
+            return <th key={head}>{head}</th>;
         });
         return arr;
     }
 
     setUpTable() {
-        console.log(this.state.data);
+        console.log(this.state.type);
 
         let rows = [];
 
@@ -47,8 +44,9 @@ class DataTable extends Component {
     }
 
     setCustomers() {
-        const tmp = this.state.data;
+        let tmp = this.props.data;
         const searchInput = this.props.searchInput;
+        console.log("Customers data: " + this.state.data);
 
         return tmp.filter(function (obj) {
             console.log(obj.name);
@@ -66,15 +64,21 @@ class DataTable extends Component {
     }
 
     setWorkers() {
-        const tmp = this.state.data;
+
+        const tmp = this.props.data;
         const searchInput = this.props.searchInput;
+        console.log("Workers data: ");
+
+        console.log(tmp);
 
         return tmp.filter(function (obj) {
+            console.log("filter");
+
             return obj.firstName.toLowerCase().includes(searchInput.toLowerCase()) ||
                 obj.lastName.toLowerCase().includes(searchInput.toLowerCase()) ||
                 obj.streetAddress.toLowerCase().includes(searchInput.toLowerCase());
         }).map(function (obj) {
-                console.log(obj);
+                console.log("map");
                  return <tr key={obj.id}>
                     <td key="name">{obj.lastName} {obj.firstName}</td>
                     <td key="address">{obj.streetAddress}</td>
@@ -89,20 +93,24 @@ class DataTable extends Component {
     }
 
     setEntries() {
-        const tmp = this.state.data;
+        const tmp = this.props.data;
         const searchInput = this.props.searchInput;
 
-        return tmp.filter(
-            function (obj) {
-                return true;
+        console.log("Entries data: ");
+        console.log(this.props.data);
+        return tmp.filter( function (obj) {
+                return obj.clientName.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    obj.fullName.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    obj.date.split('T')[0].toLowerCase().includes(searchInput.toLowerCase());
             }
         ).map(function (obj) {
             return <tr key={obj.id}>
-                <td key="user">{obj.user} </td>
-                <td key="client">{obj.client}</td>
-                <td key="date">{obj.date}</td>
+                <td key="user">{obj.clientName} </td>
+                <td key="client">{obj.fullName}</td>
+                <td key="date">{obj.date.split('T')[0]}</td>
                 <td key="duration">{obj.duration}</td>
                 <td key="quality">{obj.quality}</td>
+                <td key="additionalInfo">{obj.additionalInfo} </td>
             </tr>
         });
     }
