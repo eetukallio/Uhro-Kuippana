@@ -14,8 +14,6 @@ class Paychecks extends Component {
             entries:[]
         };
 
-
-
         this.fetchData = this.fetchData.bind(this);
     }
 
