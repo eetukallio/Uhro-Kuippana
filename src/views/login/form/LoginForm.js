@@ -38,8 +38,6 @@ class LoginForm extends React.Component {
                             </div>
                         </Col>
                     </FormGroup>
-                    <p style={{color: "red"}}>{this.props.errorMessage}</p>
-
                 </Form>
             </div>
         )
@@ -78,7 +76,6 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
     onSubmit: React.PropTypes.func.isRequired,
     btnText: React.PropTypes.string.isRequired,
-    errorMessage: React.PropTypes.string,
     data: React.PropTypes.object.isRequired
 };
 

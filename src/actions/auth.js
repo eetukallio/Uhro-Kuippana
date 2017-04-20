@@ -19,7 +19,8 @@ export function login(username, password) {
             })
             .catch((err) => {
                 dispatch(sendingRequest(false));
-                console.log(err)
+                dispatch(setErrorMessage(err.response.statusText));
+                console.log(err.response)
             });
     }
 }
@@ -72,21 +73,6 @@ export function sendingRequest(sending) {
 function setErrorMessage(message) {
     return (dispatch) => {
         dispatch({ type: SET_ERROR_MESSAGE, message });
-
-        const form = document.querySelector('.form-page__form-wrapper');
-        if (form) {
-            form.classList.add('js-form__err-animation');
-            // Remove the animation class after the animation is finished, so it
-            // can play again on the next error
-            setTimeout(() => {
-                form.classList.remove('js-form__err-animation');
-            }, 150);
-
-            // Remove the error message after 3 seconds
-            setTimeout(() => {
-                dispatch({ type: SET_ERROR_MESSAGE, message: '' });
-            }, 3000);
-        }
     }
 }
 
