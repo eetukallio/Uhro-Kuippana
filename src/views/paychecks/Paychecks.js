@@ -9,18 +9,21 @@ class Paychecks extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            userId: cookie.load('user')
-        }
+            userId: cookie.load('user'),
+            user: {},
+            entries:[]
+        };
+
+
 
         this.fetchData = this.fetchData.bind(this);
     }
 
     fetchData() {
-
         axios.get('/users/' + this.state.userId.id)
             .then((res) => {
                 console.log("fetch done");
-                this.setState({user: res.data});
+                this.setState({user: res.data[0]});
             });
 
         const userId = this.state.userId.id;
@@ -33,23 +36,18 @@ class Paychecks extends Component {
             });
     }
 
+
     componentDidMount() {
         this.fetchData();
     }
 
-
     render() {
-
-        console.log(this.state.user);
-        console.log(this.state.entries);
-
         return (
             <div  className="paychecks">
                 <Paycheck user = {this.state.user} entries = {this.state.entries} />
             </div>
         );
     }
-
 }
 
 export default Paychecks;
