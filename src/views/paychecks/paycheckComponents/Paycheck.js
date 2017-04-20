@@ -55,7 +55,7 @@ class Paycheck extends Component {
         console.log(this.state.entries);
         console.log(this.state.user);
 
-        const tmp = this.state.entries.map( obj => {
+        const dateFormatTmp = this.state.entries.map( obj => {
             const dateSplit = obj.date.split('-');
             const day = dateSplit[2].split('T')[0];
             const month = dateSplit[1];
@@ -66,14 +66,24 @@ class Paycheck extends Component {
         });
 
         const date = new Date();
-        console.log(date);
         console.log(new Date(date.getYear(),date.getMonth()+1,0));
         console.log(new Date(date.getYear(), date.getMonth(), 15));
+        console.log(date.getDate());
 
-        if (date.getTime() <= new Date(date.getYear(), date.getMonth(), 15)) {
-            console.log(date)
-        } else if (date.getTime() <= new Date(date.getYear(),date.getMonth()+1,0)) {
-            console.log('Last day of month:');
+        const thisSegment = [];
+        const lastSegment = [];
+        const secondLastSegment = [];
+
+        if (date.getDate() <= 15 ) {
+
+            console.log('before 15th');
+            const tmp = dateFormatTmp.filter(obj =>
+                obj.date.getDate() >= 1 && obj.date.getMonth() === date.getMonth() && obj.date.getYear() === date.getYear()
+            )
+
+        } else if (date.getDate() >= 15) {
+
+            console.log('after 15th');
         }
 
         return <div className="paycheckSheet">
