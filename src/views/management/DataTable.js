@@ -100,7 +100,8 @@ class DataTable extends Component {
         console.log(this.props.data);
         return tmp.filter( function (obj) {
                 return obj.clientName.toLowerCase().includes(searchInput.toLowerCase()) ||
-                    obj.fullName.toLowerCase().includes(searchInput.toLowerCase());
+                    obj.fullName.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    obj.date.split('T')[0].toLowerCase().includes(searchInput.toLowerCase());
             }
         ).map(function (obj) {
             return <tr key={obj.id}>
