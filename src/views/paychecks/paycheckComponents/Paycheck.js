@@ -35,18 +35,19 @@ class Paycheck extends Component {
         console.log(new Date(date.getYear(), date.getMonth(), 15));
         console.log(date.getDate());
 
-        const thisSegment = [];
-        const lastSegment = [];
-        const secondLastSegment = [];
+        let thisSegment = [];
+        let lastSegment = [];
+        let secondLastSegment = [];
 
         if (date.getDate() <= 15 ) {
 
             console.log('before 15th');
-            const tmp = dateFormatTmp.filter(obj =>
+            thisSegment = dateFormatTmp.filter(obj =>
                 obj.date.getDate() >= 1 && obj.date.getMonth() === date.getMonth() && obj.date.getYear() === date.getYear()
             )
 
         } else if (date.getDate() >= 15) {
+
 
             console.log('after 15th');
         }
