@@ -10,52 +10,17 @@ class Paycheck extends Component {
     constructor(props) {
 
         super(props);
-        this.state = {
-            user: {},
-            firstName: "nimi",
-            entries: [],
-            lastName: "sukunimi",
-            hourWage: 0,
-            streetAddress: "-",
-            taxPercent: "%",
-            zipCode: 11111,
-            city: "Kaupunki",
-            receivedProps: false
-        };
 
         this.setPaychecks = this.setPaychecks.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-
-        if (this.props !== nextProps) {
-
-            console.log(nextProps);
-
-            this.setState({
-                user: nextProps.user,
-                entries: nextProps.entries,
-                firstName: nextProps.user.firstName,
-                lastName: nextProps.user.lastName,
-                hourWage: nextProps.user.hourWage,
-                streetAddress: nextProps.user.streetAddress,
-                taxPercent: nextProps.user.taxPercent,
-                zipCode: nextProps.user.zipCode,
-                city: nextProps.user.city,
-                receivedProps: true
-            });
-            console.log("Paycheck state:");
-            console.log(this.state);
-        }
     }
 
     setPaychecks() {
 
         console.log('setPaycheck states:');
-        console.log(this.state.entries);
-        console.log(this.state.user);
+        console.log(this.props.entries);
+        console.log(this.props.user);
 
-        const dateFormatTmp = this.state.entries.map( obj => {
+        const tmp = this.props.entries.map( obj => {
             const dateSplit = obj.date.split('-');
             const day = dateSplit[2].split('T')[0];
             const month = dateSplit[1];
@@ -88,24 +53,24 @@ class Paycheck extends Component {
 
         return <div className="paycheckSheet">
             <div className="personalInfo">
-                <span id="name">{this.state.firstName + " " + this.state.lastName}</span><br />
-                <span className="additionalInfo">{this.state.streetAddress}</span><br />
-                <span className="additionalInfo">{this.state.zipCode}</span><br />
-                <span className="additionalInfo">{this.state.city}</span>
+                <span id="name">{this.props.user.firstName + " " + this.props.user.lastName}</span><br />
+                <span className="additionalInfo">{this.props.user.streetAddress}</span><br />
+                <span className="additionalInfo">{this.props.user.zipCode}</span><br />
+                <span className="additionalInfo">{this.props.user.city}</span>
             </div>
             <div className="paymentInfo">
                 <span>
                     {'Tuntipalkka:'}
                 </span>
                 <span className="values">
-                    {this.state.hourWage}
+                    {this.props.user.hourWage}
                 </span>
                 <br/>
                 <span>
                     {'Veroprosentti: '}
                 </span>
                 <span className="values">
-                    {this.state.taxPercent}
+                    {this.props.user.taxPercent}
                 </span>
                 <br/>
                 <div className="estimatedPay">
@@ -113,7 +78,7 @@ class Paycheck extends Component {
                     {'Arvioitu palkka: '}
                 </span>
                 <span className="values">
-                    {this.state.hourWage}
+                    {this.props.user.hourWage}
                 </span>
                 </div>
             </div>
@@ -121,18 +86,17 @@ class Paycheck extends Component {
     }
 
     render() {
-        console.log(this.state.user);
-        console.log(this.state.entries);
-        if (this.state.receivedProps) {
-            return (
-                <div className="paycheck">
-                    {this.setPaychecks()}
-                </div>
-            );
-        } else {
-            return <p>Loading</p>;
-        }
+        return (
+            <div className="paycheck">
+                {this.setPaychecks()}
+            </div>
+        );
     }
 }
+
+Paycheck.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    entries: React.PropTypes.object.isRequired
+};
 
 export default Paycheck;

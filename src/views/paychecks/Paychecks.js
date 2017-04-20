@@ -11,7 +11,9 @@ class Paychecks extends Component {
         this.state = {
             userId: cookie.load('user'),
             user: {},
-            entries:[]
+            entries:[],
+            loadedUsers: false,
+            loadedEntries: false
         };
 
         this.fetchData = this.fetchData.bind(this);
@@ -20,17 +22,18 @@ class Paychecks extends Component {
     fetchData() {
         axios.get('/users/' + this.state.userId.id)
             .then((res) => {
-                console.log("fetch done");
-                this.setState({user: res.data[0]});
-            });
+                console.log("Users fetched");
+                this.setState({user: res.data[0], loadedUsers: true});
+            }).catch(err => console.log(err));
         const userId = this.state.userId.id;
 
         axios.get('/workorders')
             .then((res) => {
                 const tmp = res.data.filter(obj =>
                 obj.userId === userId);
-                this.setState({entries: tmp});
-            });
+                console.log("Work orders fetched");
+                this.setState({entries: tmp, loadedEntries: true});
+            }).catch(err => console.log(err));
     }
 
     componentDidMount() {
@@ -40,7 +43,8 @@ class Paychecks extends Component {
     render() {
         return (
             <div  className="paychecks">
-                <Paycheck user = {this.state.user} entries = {this.state.entries} />
+                {this.state.loadedUsers && this.state.loadedEntries ? <Paycheck user = {this.state.user} entries = {this.state.entries} /> : null}
+
             </div>
         );
     }
