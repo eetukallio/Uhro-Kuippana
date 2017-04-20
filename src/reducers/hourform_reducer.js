@@ -1,15 +1,15 @@
-import { CHANGE_HOURS_FORM, SENDING_FORM, SET_ERROR_MESSAGE, OTHER_CLIENT, OTHER_QUALITY, HOURS_SENT } from '../constants/AppConstants';
+import { SET_USER, CHANGE_HOURS_FORM, SENDING_FORM, SET_ERROR_MESSAGE, OTHER_CLIENT, OTHER_QUALITY, HOURS_SENT } from '../constants/AppConstants';
 import cookie from 'react-cookie';
 
 const assign = Object.assign;
 
-const currentUserInfo = cookie.load('user');
-console.log(currentUserInfo);
+// const currentUserInfo = cookie.load('user');
+// console.log(currentUserInfo);
 
 // The initial application state
 const initialState = {
     formState: {
-        user: currentUserInfo.id,
+        user: 0,
         date: '',
         duration: '',
         distance: '',
@@ -31,12 +31,15 @@ export default function(state = initialState, action) {
         case SENDING_FORM:
             return {...state, currentlySending: action.sending };
         case HOURS_SENT:
-            return {...state, formState: {date: '', duration: '', distance: '', client: 'valitse', quality: '', additionalInfo: ''},
+            return {...state, formState: {date: '', duration: '', distance: '', client: '', quality: '', additionalInfo: ''},
             isOtherClient: false, isOtherQuality: false};
         case OTHER_CLIENT:
             return {...state, isOtherClient: action.newState};
         case OTHER_QUALITY:
             return {...state, isOtherQuality: action.newState};
+        case SET_USER:
+            console.log(action.newState);
+            return {...state, formState: {user: action.newState, date: '', duration: '', distance: '', client: '', quality: '', additionalInfo: ''}}
         case SET_ERROR_MESSAGE:
             return assign({}, state, {
                 errorMessage: action.message

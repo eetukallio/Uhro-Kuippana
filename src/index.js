@@ -14,7 +14,7 @@ import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 import { checkAuth } from './utils/checkAuth';
 import cookie from 'react-cookie';
-import {SET_AUTH} from './constants/AppConstants';
+import {SET_AUTH, SET_USER} from './constants/AppConstants';
 import Customers from './views/management/managementComponents/Customers';
 import Workers from './views/management/managementComponents/Workers';
 import HourEntries from './views/management/managementComponents/HourEntries';
@@ -29,6 +29,7 @@ if (token) {
     store.dispatch({type: SET_AUTH});
     axios.defaults.headers.common['Authorization'] = token;
 }
+
 
 axios.defaults.baseURL = 'http://207.154.228.188:3000';
 

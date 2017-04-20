@@ -1,4 +1,4 @@
-import { SET_AUTH, UNAUTH_USER, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
+import { SET_AUTH, SET_USER, UNAUTH_USER, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import cookie from 'react-cookie';
@@ -9,11 +9,12 @@ export function login(username, password) {
 
         axios.post("api/auth/login", {username, password})
             .then((res) => {
-                console.log(res);
+                console.log("USER ID IS " + res.data.user.id);
                 cookie.save('token', res.data.token, {path: '/'});
                 cookie.save('user', res.data.user, {path: '/'});
                 dispatch(sendingRequest(false));
                 dispatch({type: SET_AUTH});
+                dispatch(setUser(res.data.user.id));
                 browserHistory.push("/home");
             })
             .catch((err) => {
@@ -38,6 +39,10 @@ export function logout() {
  */
 export function setAuthState(newState) {
     return { type: SET_AUTH, newState };
+}
+
+export function setUser(newState) {
+    return { type: SET_USER, newState}
 }
 
 /**
