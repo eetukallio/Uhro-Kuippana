@@ -18,9 +18,10 @@ import {SET_AUTH, SET_USER} from './constants/AppConstants';
 import Customers from './views/management/managementComponents/Customers';
 import Workers from './views/management/managementComponents/Workers';
 import HourEntries from './views/management/managementComponents/HourEntries';
+import AddWorkers from './views/management/managementComponents/AddWorkers'
 import axios from 'axios';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore , +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const store = createStoreWithMiddleware(rootReducer);
 
 const token = cookie.load('token');
@@ -37,15 +38,16 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={Login}/>
+                <IndexRoute component={checkAuth(HourEntry)}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/home" component={checkAuth(HourEntry)}/>
                 <Route path="/paychecks" component={checkAuth(Paychecks)}/>
                 <Route path="/management" component={checkAuth(Management)}>
                     <IndexRoute component={HourEntries}/>
                     <Route path="/management/workers" component={Workers}/>
-                    <Route path="/management/customers" component={Customers}  />
-                    <Route path="/management/entries"  component={HourEntries}  />
+                    <Route path="/management/customers" component={Customers} />
+                    <Route path="/management/entries"  component={HourEntries} />
+                    <Route path="/management/addworkers"  component={AddWorkers} />
                 </Route>
             </Route>
         </Router>

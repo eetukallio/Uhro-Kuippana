@@ -59,3 +59,17 @@
 .inputField {
     margin-left: 5px;
 }
+
+.submitButtonDiv {
+    float: left;
+    margin-left: 1em;
+}
+
+.control-label {
+    float: left;
+}
+
+.addWorker {
+    padding-top: 1em;
+    float: left;
+}

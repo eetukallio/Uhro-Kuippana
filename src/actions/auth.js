@@ -1,4 +1,4 @@
-import { SET_AUTH, SET_USER, UNAUTH_USER, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
+import { SET_AUTH, SET_USER, ADDWORKER_SENT, UNAUTH_USER, CHANGE_FORM, CHANGE_ADDWORKER_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 import cookie from 'react-cookie';
@@ -34,6 +34,24 @@ export function logout() {
     }
 }
 
+export function register(formData) {
+    return function(dispatch) {
+        dispatch(sendingRequest(true));
+
+        axios.post("/register", JSON.stringify(formData), {headers: {'Content-Type': 'application/json'}})
+            .then(res => {
+                console.log("REGISTRATION FORM SENT " + res);
+                dispatch(sendingRequest(false));
+                workerFormSent();
+            })
+            .catch((err) => {
+                dispatch(sendingRequest(false));
+                console.log(err);
+            });
+    }
+}
+
+
 /**
  * Sets the authentication state of the application
  * @param {boolean} newState True means a user is logged in, false means no user is logged in
@@ -57,6 +75,10 @@ export function changeForm(newState) {
     return { type: CHANGE_FORM, newState };
 }
 
+export function changeAddWorkerForm(newState) {
+    return { type: CHANGE_ADDWORKER_FORM, newState}
+}
+
 /**
  * Sets the requestSending state, which displays a loading indicator during requests
  * @param  {boolean} sending The new state the app should have
@@ -74,6 +96,10 @@ function setErrorMessage(message) {
     return (dispatch) => {
         dispatch({ type: SET_ERROR_MESSAGE, message });
     }
+}
+
+function workerFormSent() {
+    return { type: ADDWORKER_SENT}
 }
 
 /**

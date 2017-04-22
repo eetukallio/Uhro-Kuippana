@@ -42,6 +42,7 @@ class Management extends Component {
                         <Link to="/management/entries"><li>Merkinnät</li></Link>
                         <Link to="/management/customers"><li>Asiakkaat</li></Link>
                         <Link to="/management/workers"><li>Työntekijät</li></Link>
+                        <Link to="/management/addworkers"><li>Lisää työntekijä</li></Link>
                     </ul>
                 </div>
                 <div className="searchBar">

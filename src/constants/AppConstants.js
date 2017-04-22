@@ -1,8 +1,10 @@
 export const CHANGE_FORM = 'CHANGE_FORM';
+export const CHANGE_ADDWORKER_FORM = 'CHANGE_ADDWORKER_FORM';
 export const CHANGE_HOURS_FORM = 'CHANGE_HOURS_FORM';
 export const OTHER_CLIENT = 'OTHER_CLIENT';
 export const OTHER_QUALITY = 'OTHER_QUALITY';
 export const HOURS_SENT = "HOURS_SENT";
+export const ADDWORKER_SENT = "ADDWORKER_SENT";
 export const SET_AUTH = 'SET_AUTH';
 export const SET_USER = 'SET_USER';
 export const SENDING_REQUEST = 'SENDING_REQUEST';
