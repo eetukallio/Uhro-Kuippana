@@ -82,7 +82,7 @@ class HourForm extends React.Component {
                             Päivämäärä
                         </Col>
                         <Col xs={8} sm={4}>
-                            <FormControl name="date" type="date" value={this.props.data.date} onChange={this.changeForm.bind(this)} />
+                            <FormControl name="date" type="date" placeholder="dd.mm.yyyy" value={this.props.data.date} onChange={this.changeForm.bind(this)} />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="hoursField">

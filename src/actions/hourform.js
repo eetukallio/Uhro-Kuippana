@@ -1,11 +1,15 @@
 import { CHANGE_HOURS_FORM, SENDING_FORM, SET_ERROR_MESSAGE, HOURS_SENT, OTHER_CLIENT, OTHER_QUALITY } from '../constants/AppConstants';
+import cookie from 'react-cookie';
 import axios from 'axios';
 
 export function submit(formData) {
     return function(dispatch) {
         dispatch(sendingRequest(true));
 
-        axios.post("/workorders", JSON.stringify(formData), {headers: {'Content-Type': 'application/json'}})
+        const user = cookie.load('user');
+        const sendData = Object.assign(formData, {user: user.id});
+
+        axios.post("/workorders", JSON.stringify(sendData), {headers: {'Content-Type': 'application/json'}})
             .then(res => {
                 console.log("SENT " + res);
                 dispatch(hourSent());

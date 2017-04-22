@@ -39,7 +39,7 @@ export default function(state = initialState, action) {
             return {...state, isOtherQuality: action.newState};
         case SET_USER:
             console.log(action.newState);
-            return {...state, formState: {user: action.newState, date: '', duration: '', distance: '', client: '', quality: '', additionalInfo: ''}}
+            return {...state, formState: {user: action.newState, date: '', duration: '', distance: '', client: '', quality: '', additionalInfo: ''}};
         case SET_ERROR_MESSAGE:
             return assign({}, state, {
                 errorMessage: action.message
