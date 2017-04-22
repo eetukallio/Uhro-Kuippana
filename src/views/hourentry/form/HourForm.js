@@ -43,49 +43,58 @@ class HourForm extends React.Component {
 
     buildQualities() {
     let objects = this.state.qualities;
-    return (
-        <FormControl name="quality" componentClass="select" onChange={this.changeForm.bind(this)}
-                     value={this.props.data.quality}
-                     placeholder="Valitse" required>
-            <option value="valitse">Valitse</option>
-            {objects.map(function(o) {
-                return (
-                    <option key={o.id} value={o.id}>{o.name}</option>
-                )
-            })}
-            <option value="otherQuality">Muu</option>
-        </FormControl>
+    return ( <div className="qualities">
+                <FormControl name="quality" componentClass="select" onChange={this.changeForm.bind(this)}
+                             value={this.props.data.quality}
+                             placeholder="Valitse"
+                             required>
+                    <option value="valitse">Valitse</option>
+                    {objects.map(function(o) {
+                        return (
+                            <option key={o.id} value={o.id}>{o.name}</option>
+                        )
+                    })}
+                    <option value="otherQuality">Muu</option>
+                </FormControl>
+                <FormControl.Feedback />
+            </div>
+
     )}
 
     buildClients() {
         let objects = this.state.clients;
         return (
-            <FormControl name="client" componentClass="select" onChange={this.changeForm.bind(this)}
-                         value={this.props.data.client}
-                         placeholder="Valitse" required>
-                <option value="valitse">Valitse</option>
-                {objects.map(function(o) {
-                    return (
-                        <option key={o.id} value={o.id}>{o.name}</option>
-                    )
-                })}
-                <option value="otherClient">Muu</option>
-            </FormControl>
+            <div className="clients">
+                <FormControl name="client" componentClass="select" onChange={this.changeForm.bind(this)}
+                             value={this.props.data.client}
+                             placeholder="Valitse" required>
+                    <option value="valitse">Valitse</option>
+                    {objects.map(function(o) {
+                        return (
+                            <option key={o.id} value={o.id}>{o.name}</option>
+                        )
+                    })}
+                    <option value="otherClient">Muu</option>
+                </FormControl>
+                <FormControl.Feedback />
+            </div>
+
         )
     }
 
     render() {
         return (
                 <Form horizontal onSubmit={this.onSubmit.bind(this)}>
-                    <FormGroup controlId="dateField">
+                    <FormGroup controlId="dateField" validationState={this.getDateValidationState()}>
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Päivämäärä
+                            Päivämäärä*
                         </Col>
                         <Col xs={8} sm={4}>
                             <FormControl name="date" type="date" placeholder="dd.mm.yyyy" value={this.props.data.date} onChange={this.changeForm.bind(this)} />
+                            <FormControl.Feedback />
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="hoursField">
+                    <FormGroup controlId="hoursField" validationState={this.getDurationValidationState()}>
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Työaika
                         </Col>
@@ -93,9 +102,10 @@ class HourForm extends React.Component {
                             <FormControl name="duration" type="number" step="0.25" min="0" onChange={this.changeForm.bind(this)}
                                          placeholder="Ilmoita työaika tunteina, desimaalein. (esim. 6,75h = 6h 45min)"
                                          value={this.props.data.duration}/>
+                            <FormControl.Feedback />
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="distanceField">
+                    <FormGroup controlId="distanceField" validationState={this.getDistanceValidationState()}>
                         <Col componentClass={ControlLabel}
                              xs={3} sm={4}>
                             Kilometrit
@@ -104,9 +114,10 @@ class HourForm extends React.Component {
                             <FormControl name="distance" type="number" min="0" onChange={this.changeForm.bind(this)}
                                          placeholder="Kilometrit työpaikalle omalla autolla"
                                          value={this.props.data.distance}/>
+                            <FormControl.Feedback />
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="clientField">
+                    <FormGroup controlId="clientField" validationState={this.getClientValidationState()}>
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Asiakas
                         </Col>
@@ -114,7 +125,7 @@ class HourForm extends React.Component {
                             {this.buildClients()}
                         </Col>
                     </FormGroup>
-                    {this.props.otherClient ? <FormGroup controlId="addClientField">
+                    {this.props.otherClient ? <FormGroup controlId="addClientField" validationState={this.getOtherClientValidationState()}>
                             <Col componentClass={ControlLabel} xs={3} sm={4}>
 
                             </Col>
@@ -123,17 +134,18 @@ class HourForm extends React.Component {
                                              placeholder="Asiakkaan/asiakasyrityksen nimi"
                                              value={this.state.otherClientName}
                                              required/>
+                                <FormControl.Feedback />
                             </Col>
                         </FormGroup> : null}
-                    <FormGroup controlId="workTypeField">
+                    <FormGroup controlId="workTypeField" validationState={this.getQualityValidationState()}>
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Työnkuva
+                            Työnkuva*
                         </Col>
                         <Col xs={8} sm={4}>
                             {this.buildQualities()}
                         </Col>
                     </FormGroup>
-                    {this.props.otherQuality ? <FormGroup controlId="addQualityField">
+                    {this.props.otherQuality ? <FormGroup controlId="addQualityField" validationState={this.getOtherQualityValidationState()}>
                             <Col componentClass={ControlLabel} xs={3} sm={4}>
 
                             </Col>
@@ -142,6 +154,7 @@ class HourForm extends React.Component {
                                              placeholder="Muu, mikä?"
                                              value={this.state.otherQualityName}
                                              required/>
+                                <FormControl.Feedback />
                             </Col>
                         </FormGroup> : null}
                     <FormGroup controlId="infoField">
@@ -157,9 +170,9 @@ class HourForm extends React.Component {
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
 
                         </Col>
-                        <Col xs={1} sm={1}>
-                            <Button type="submit">
-                                Lähetä
+                        <Col xs={8} sm={4}>
+                            <Button bsStyle="primary" type="submit" disabled={this.submitState()}>
+                                Ilmoita
                             </Button>
                         </Col>
                     </FormGroup>
@@ -167,12 +180,25 @@ class HourForm extends React.Component {
         )
     }
 
+    submitState() {
+        if (((this.state.otherQualityName !== '') || this.props.data.quality !== '') && this.props.data.date !== '') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
     changeForm(e) {
         const name = e.target.name;
         console.log(name);
         if (name === "quality") {
             if (e.target.value === "otherQuality") {
                 this.props.onOtherQuality(true);
+                const newState = this.mergeWithCurrentState({
+                    [name]: ''
+                });
+                this.emitChange(newState);
             } else {
                 this.props.onOtherQuality(false);
                 const newState = this.mergeWithCurrentState({
@@ -183,6 +209,10 @@ class HourForm extends React.Component {
         } else if (name === "client") {
             if (e.target.value === "otherClient") {
                 this.props.onOtherClient(true);
+                const newState = this.mergeWithCurrentState({
+                    [name]: ''
+                });
+                this.emitChange(newState);
             } else {
                 this.props.onOtherClient(false);
                 const newState = this.mergeWithCurrentState({
@@ -194,9 +224,9 @@ class HourForm extends React.Component {
             this.props.onOtherClient(true);
         } else {
             if (this.props.otherQuality === true && name === "addQuality") {
-                this.setState({otherQualityName: e.target.value})
+                this.setState({otherQualityName: e.target.value});
             } else if (this.props.otherClient === true && name === "addClient") {
-                this.setState({otherClientName: e.target.value})
+                this.setState({otherClientName: e.target.value});
             } else {
                 const newState = this.mergeWithCurrentState({
                     [name]: e.target.value
@@ -227,6 +257,54 @@ class HourForm extends React.Component {
         }
         console.log(this.props.data);
     }
+
+    getDateValidationState() {
+        if (this.props.data.date.length > 0) {
+            return 'success';
+        }
+    }
+
+    getDurationValidationState() {
+        if (this.props.data.duration.length > 0 && !isNaN(this.props.data.duration)) {
+            return 'success';
+        } else if (isNaN(this.props.data.duration)) {
+            return 'error';
+        }
+    }
+
+    getDistanceValidationState() {
+        if (this.props.data.distance.length > 0 && !isNaN(this.props.data.distance)) {
+            return 'success';
+        } else if (isNaN(this.props.data.distance)) {
+            return 'error';
+        }
+    }
+
+    getClientValidationState() {
+        if (this.props.data.client.length > 0 && this.props.otherClient === false) {
+            return 'success';
+        }
+    }
+
+    getQualityValidationState() {
+        if (this.props.data.quality.length > 0 && this.props.otherQuality === false) {
+            return 'success';
+        }
+    }
+
+    getOtherClientValidationState() {
+        if (this.state.otherClientName.length > 0) {
+            return 'success';
+        }
+    }
+
+    getOtherQualityValidationState() {
+        if (this.state.otherQualityName.length > 0) {
+            return 'success';
+        }
+    }
+
+
 }
 
 HourForm.propTypes = {

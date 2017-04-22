@@ -8,3 +8,7 @@
     font-size: smaller;
     color: #eeeeee;
 }
+
+.control-label {
+    float: left;
+}
