@@ -12,7 +12,10 @@ class Login extends React.Component {
 
     render() {
         const { formState, currentlySending } = this.props.data;
-        return <div className="login">
+        return <div className="loginContainer">
+            <div className="loginHeader">
+                <h3>Kirjaudu sisään</h3>
+            </div>
                 <LoginForm
                     data={formState}                    onChange={this.props.changeForm}
                     location={location}                 history={this.props.history}

@@ -1,5 +1,32 @@
-.login {
+.loginContainer {
+    display: inline-block;
+    width: 40%;
+    border: solid 1px lightgray;
+    border-radius: 5px;
     text-align: center;
-    margin: auto;
-    padding: 1em;
+    margin: 1em;
 }
+
+.login {
+    display: block;
+    padding: 1em;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.loginHeader {
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: lightgray;
+    color: gray;
+}
+
+.container {
+    width: auto;
+}
+
