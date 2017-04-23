@@ -39,6 +39,10 @@
     margin: 0;
 }
 
+.loginFormContainer {
+    padding-left: 1em;
+}
+
 @media screen and (max-width:  460px) {
     .loginContainer {
         width: 90%;

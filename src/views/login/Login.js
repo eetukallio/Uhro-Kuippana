@@ -16,12 +16,15 @@ class Login extends React.Component {
             <div className="loginHeader">
                 <h3>Kirjaudu sisään</h3>
             </div>
+            <div className="loginFormContainer">
                 <LoginForm
                     data={formState}                    onChange={this.props.changeForm}
                     location={location}                 history={this.props.history}
                     onSubmit={this.login.bind(this)}    btnText={"Kirjaudu"}
                     currentlySending={currentlySending} errorMessage={this.props.data.errorMessage}
                 />
+            </div>
+
             <div className="alertContainer">
                 {this.props.data.errorMessage === '' ? null :
                     <Alert bsStyle="warning">
