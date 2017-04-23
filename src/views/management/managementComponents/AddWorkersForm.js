@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Grid, Row, Form, FormControl, ControlLabel, FormGroup } from 'react-bootstrap';
+import { Button, Col, Grid, Row, Form, FormControl, ControlLabel, FormGroup, Checkbox } from 'react-bootstrap';
 
 class AddWorkersForm extends React.Component {
     constructor(props) {
@@ -64,7 +64,7 @@ class AddWorkersForm extends React.Component {
                             <Col xs={12} sm={8}>
                                 <FormGroup controlId="birthdayField" validationState={this.getBirthdayValidationState()}>
                                     <ControlLabel>Syntymäaika</ControlLabel>
-                                    <FormControl type="date" name="birthday" value={this.props.data.birthday} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+                                    <FormControl type="date" name="birthday" placeholder="dd.mm.yyyy" value={this.props.data.birthday} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
                                     <FormControl.Feedback />
 
                                 </FormGroup>
@@ -75,7 +75,7 @@ class AddWorkersForm extends React.Component {
                             <Col xs={12} sm={8}>
                                 <FormGroup controlId="userNameField" validationState={this.getUsernameValidationState()}>
                                    <ControlLabel> Käyttäjänimi</ControlLabel>
-                                    <FormControl type="text" name="username" value={this.props.data.username} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+                                    <FormControl type="text" name="username" placeholder="Tullaan käyttämään järjestelmään kirjautuessa" value={this.props.data.username} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
                                     <FormControl.Feedback />
 
                                 </FormGroup>
@@ -103,7 +103,7 @@ class AddWorkersForm extends React.Component {
                             <Col xs={12} sm={4}>
                                 <FormGroup controlId="taxPercentField" validationState={this.getTaxPercentValidationState()}>
                                     <ControlLabel>Veroprosentti</ControlLabel>
-                                    <FormControl type="text" name="taxPercent" value={this.props.data.taxPercent} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
+                                    <FormControl type="text" name="taxPercent" placeholder="Numerona, ilman prosenttimerkkiä" value={this.props.data.taxPercent} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
                                     <FormControl.Feedback />
 
                                 </FormGroup>
@@ -120,10 +120,9 @@ class AddWorkersForm extends React.Component {
                         <Row>
                             <Col xs={12} sm={8}>
                                 <FormGroup controlId="isEmployerField">
-                                    <ControlLabel>Työnantaja</ControlLabel>
-                                    <FormControl type="text" name="isEmployer" value={this.props.data.isEmployer} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
-                                    <FormControl.Feedback />
-
+                                    <Checkbox id="checkbox" bsClass="employerCheckbox" type="text" name="isEmployer" checked={this.props.data.isEmployer} onChange={this.changeForm.bind(this)}>
+                                        <b> Työnantajan oikeudet</b>
+                                    </Checkbox>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -137,20 +136,29 @@ class AddWorkersForm extends React.Component {
                                 </FormGroup>
                             </Col>
                         </Row>
-
                     </Grid>
                 </Form>
             </div>
         )
     }
 
+
     changeForm(e) {
         const name = e.target.name;
-        console.log(name);
-        const newState = this.mergeWithCurrentState({
-            [name]: e.target.value
-        });
-        this.emitChange(newState);
+
+        if (name === 'isEmployer') {
+            const newState = this.mergeWithCurrentState({
+                [name]: e.target.checked
+            });
+            this.emitChange(newState);
+        } else {
+            console.log(name);
+            const newState = this.mergeWithCurrentState({
+                [name]: e.target.value
+            });
+            this.emitChange(newState);
+        }
+
     }
 
     changeConfirmPassword(e) {
@@ -169,7 +177,12 @@ class AddWorkersForm extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.props.onSubmit(this.props.data);
+
+        const sendData = Object.assign(this.props.data, {isEmployer: this.props.data.isEmployer ? "1" : "0"});
+
+        this.props.onSubmit(sendData);
+
+        this.setState({confirmedPassword: ''});
     }
 
     getFirstNameValidationState() {

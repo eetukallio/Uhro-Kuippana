@@ -15,7 +15,7 @@ const initialState = {
         taxPercent: '',
         hourWage: '',
         username: '',
-        isEmployer: ''
+        isEmployer: false
     },
     currentlySending: false,
     errorMessage: ''
@@ -27,7 +27,19 @@ export default function (state = initialState, action) {
         case CHANGE_ADDWORKER_FORM:
             return {...state, formState: action.newState};
         case ADDWORKER_SENT:
-            return {...state, initialState};
+            return {...state, formState: {
+                firstName: '',
+                lastName: '',
+                streetAddress: '',
+                city: '',
+                zipCode: '',
+                birthday: '',
+                password: '',
+                taxPercent: '',
+                hourWage: '',
+                username: '',
+                isEmployer: false
+            }};
         case SENDING_REQUEST:
             return {...state, currentlySending: action.sending };
         case SET_ERROR_MESSAGE:

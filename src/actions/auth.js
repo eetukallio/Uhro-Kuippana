@@ -35,6 +35,7 @@ export function logout() {
 }
 
 export function register(formData) {
+    console.log(formData);
     return function(dispatch) {
         dispatch(sendingRequest(true));
 
@@ -42,11 +43,11 @@ export function register(formData) {
             .then(res => {
                 console.log("REGISTRATION FORM SENT " + res);
                 dispatch(sendingRequest(false));
-                workerFormSent();
+                dispatch(workerFormSent());
             })
             .catch((err) => {
                 dispatch(sendingRequest(false));
-                console.log(err);
+                console.log(err.message);
             });
     }
 }
