@@ -21,7 +21,10 @@ export const checkAuth = (ChildComponent) => {
 
         render() {
             return (
-                <ChildComponent {...this.props}/>
+                <div className="authenticatedComponent">
+                    {this.props.isAuthenticated ? <ChildComponent {...this.props}/> : null}
+                </div>
+
             )
         }
     }
