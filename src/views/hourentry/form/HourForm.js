@@ -89,8 +89,8 @@ class HourForm extends React.Component {
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Päivämäärä*
                         </Col>
-                        <Col xs={8} sm={4}>
-                            <FormControl name="date" type="date" placeholder="dd.mm.yyyy" value={this.props.data.date} onChange={this.changeForm.bind(this)} />
+                        <Col xs={12} sm={6}>
+                            <FormControl name="date" type="date" placeholder="dd.mm.yyyy" value={this.props.data.date} onChange={this.changeForm.bind(this)} required/>
                             <FormControl.Feedback />
                         </Col>
                     </FormGroup>
@@ -98,7 +98,7 @@ class HourForm extends React.Component {
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Työaika
                         </Col>
-                        <Col xs={8} sm={4}>
+                        <Col xs={12} sm={6}>
                             <FormControl name="duration" type="number" step="0.25" min="0" onChange={this.changeForm.bind(this)}
                                          placeholder="Ilmoita työaika tunteina, desimaalein. (esim. 6,75h = 6h 45min)"
                                          value={this.props.data.duration}/>
@@ -110,7 +110,7 @@ class HourForm extends React.Component {
                              xs={3} sm={4}>
                             Kilometrit
                         </Col>
-                        <Col xs={8} sm={4}>
+                        <Col xs={12} sm={6}>
                             <FormControl name="distance" type="number" min="0" onChange={this.changeForm.bind(this)}
                                          placeholder="Kilometrit työpaikalle omalla autolla"
                                          value={this.props.data.distance}/>
@@ -121,7 +121,7 @@ class HourForm extends React.Component {
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Asiakas
                         </Col>
-                        <Col xs={8} sm={4}>
+                        <Col xs={12} sm={6}>
                             {this.buildClients()}
                         </Col>
                     </FormGroup>
@@ -129,7 +129,7 @@ class HourForm extends React.Component {
                             <Col componentClass={ControlLabel} xs={3} sm={4}>
 
                             </Col>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={6}>
                                 <FormControl name="addClient" type="text" onChange={this.changeForm.bind(this)}
                                              placeholder="Asiakkaan/asiakasyrityksen nimi"
                                              value={this.state.otherClientName}
@@ -141,7 +141,7 @@ class HourForm extends React.Component {
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Työnkuva*
                         </Col>
-                        <Col xs={8} sm={4}>
+                        <Col xs={12} sm={6}>
                             {this.buildQualities()}
                         </Col>
                     </FormGroup>
@@ -149,7 +149,7 @@ class HourForm extends React.Component {
                             <Col componentClass={ControlLabel} xs={3} sm={4}>
 
                             </Col>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={6}>
                                 <FormControl name="addQuality" type="text" onChange={this.changeForm.bind(this)}
                                              placeholder="Muu, mikä?"
                                              value={this.state.otherQualityName}
@@ -161,7 +161,7 @@ class HourForm extends React.Component {
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
                             Huomioitavaa
                         </Col>
-                        <Col xs={8} sm={4}>
+                        <Col xs={12} sm={6}>
                             <FormControl name="additionalInfo" componentClass="textArea" onChange={this.changeForm.bind(this)}
                                          value={this.props.data.additionalInfo}/>
                         </Col>
@@ -170,7 +170,7 @@ class HourForm extends React.Component {
                         <Col componentClass={ControlLabel} xs={3} sm={4}>
 
                         </Col>
-                        <Col xs={8} sm={4}>
+                        <Col xs={12} sm={6}>
                             <Button bsStyle="primary" type="submit" disabled={this.submitState()}>
                                 Ilmoita
                             </Button>
