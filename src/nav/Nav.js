@@ -25,11 +25,57 @@ class Nav extends Component {
                                 <li style={{float: 'right'}}><Link to="/login">Kirjaudu sisään</Link></li>
                             )}
                     </ul>
+
+                        {/*<span onClick={this.burgerClick.bind(this)} className="header-burgerIcon"><span className="glyphicon glyphicon-menu-hamburger" /></span>*/}
+
+                        <div id="nav-icon3" onClick={this.openClick}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
                     </div>
+
                 </header>
+
+                <ul className="header-burger" style={{top: '-200px'}}>
+                    <li><Link to="/home" activeClassName="active">Tuntien syöttö </Link></li>
+                    <li><Link to="/paychecks" activeClassName="active"> Palkkalaskelmat</Link> </li>
+                    <li><Link to="/management" activeClassName="active">Hallinta</Link></li>
+                    <div className="logInOut" ></div>
+                    {this.props.loggedIn ? (
+                            <li><a href="#" onClick={this.props.logout}>Kirjaudu ulos</a></li>
+                        ) : (
+                            <li><Link to="/login">Kirjaudu sisään</Link></li>
+                        )}
+                </ul>
             </div>
 
         );
+
+    }
+
+    openClick() {
+        const burgerMenu = document.getElementsByClassName("header-burger");
+        const icon = document.getElementById("nav-icon3");
+        if (icon.className !== "open") {
+            icon.className = "open";
+            burgerMenu[0].style.top = '65px';
+        } else if (icon.className === "open") {
+            burgerMenu[0].style.top = '-200px';
+            icon.className = "";
+        }
+
+    }
+
+    burgerClick() {
+        const burgerMenu = document.getElementsByClassName("header-burger");
+        if (burgerMenu[0].style.top === '-200px') {
+            burgerMenu[0].style.top = '65px';
+        } else {
+            burgerMenu[0].style.top = '-200px';
+        }
     }
 }
 
