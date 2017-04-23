@@ -105,27 +105,8 @@
     z-index: 1;
 }
 
-@media screen and (max-width: 720px) {
-    .headerContent {
-        width: 100%;
-        padding-left: 1em;
-    }
-
-    .header-subnav {
-        display: none;
-    }
-
-    .header-burger {
-        display: block;
-    }
-
-    .header-burgerIcon {
-        display: inline;
-    }
-}
-
-
 #nav-icon3 {
+    display: none;
     float: right;
     margin: 0.25em 1em;
     width: 35px;
@@ -197,4 +178,23 @@
     top: 12px;
     width: 0%;
     left: 50%;
+}
+
+@media screen and (max-width: 720px) {
+    .headerContent {
+        width: 100%;
+        padding-left: 1em;
+    }
+
+    .header-subnav {
+        display: none;
+    }
+
+    .header-burger {
+        display: block;
+    }
+
+    #nav-icon3 {
+        display: block;
+    }
 }

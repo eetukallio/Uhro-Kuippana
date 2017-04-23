@@ -59,11 +59,14 @@ class Nav extends Component {
     openClick() {
         const burgerMenu = document.getElementsByClassName("header-burger");
         const icon = document.getElementById("nav-icon3");
+        const content = document.getElementsByClassName("content");
         if (icon.className !== "open") {
             icon.className = "open";
             burgerMenu[0].style.top = '65px';
+            content[0].style.top = '165px';
         } else if (icon.className === "open") {
             burgerMenu[0].style.top = '-200px';
+            content[0].style.top = '0px';
             icon.className = "";
         }
 
