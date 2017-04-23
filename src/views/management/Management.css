@@ -63,6 +63,12 @@
 
 .inputField {
     margin-left: 5px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+}
+
+span.glyphicon {
+    top: 2px;
 }
 
 .submitButtonDiv {
@@ -77,6 +83,7 @@
 .addWorker {
     padding: 1em 1em 1em 0;
     margin: auto;
+    text-align: left;
 }
 
 .container {
