@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Form, FormControl, ControlLabel, FormGroup } from 'react-bootstrap';
+import { Button, Col, Form, FormControl, ControlLabel, FormGroup, Grid, Row } from 'react-bootstrap';
 import axios from 'axios';
 
 
@@ -20,9 +20,9 @@ class HourForm extends React.Component {
         axios.get('http://207.154.228.188:3000/qualities',
             {headers: {'Content-Type': 'application/json'}})
             .then((res) => {
-            console.log(res.data);
-            this.setState({qualities: res.data});
-            this.buildQualities();
+                console.log(res.data);
+                this.setState({qualities: res.data});
+                this.buildQualities();
             }).catch(err => console.log(err));
     }
 
@@ -30,9 +30,9 @@ class HourForm extends React.Component {
         axios.get('http://207.154.228.188:3000/clients',
             {headers: {'Content-Type': 'application/json'}})
             .then((res) => {
-            console.log(res.data);
-            this.setState({clients: res.data});
-            this.buildClients();
+                console.log(res.data);
+                this.setState({clients: res.data});
+                this.buildClients();
             }).catch(err => console.log(err));
     }
 
@@ -42,8 +42,8 @@ class HourForm extends React.Component {
     }
 
     buildQualities() {
-    let objects = this.state.qualities;
-    return ( <div className="qualities">
+        let objects = this.state.qualities;
+        return ( <div className="qualities">
                 <FormControl name="quality" componentClass="select" onChange={this.changeForm.bind(this)}
                              value={this.props.data.quality}
                              placeholder="Valitse"
@@ -59,7 +59,7 @@ class HourForm extends React.Component {
                 <FormControl.Feedback />
             </div>
 
-    )}
+        )}
 
     buildClients() {
         let objects = this.state.clients;
@@ -84,99 +84,127 @@ class HourForm extends React.Component {
 
     render() {
         return (
-                <Form horizontal onSubmit={this.onSubmit.bind(this)}>
-                    <FormGroup controlId="dateField" validationState={this.getDateValidationState()}>
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Päivämäärä*
-                        </Col>
-                        <Col xs={12} sm={6}>
-                            <FormControl name="date" type="date" placeholder="dd.mm.yyyy" value={this.props.data.date} onChange={this.changeForm.bind(this)} required/>
-                            <FormControl.Feedback />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="hoursField" validationState={this.getDurationValidationState()}>
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Työaika
-                        </Col>
-                        <Col xs={12} sm={6}>
-                            <FormControl name="duration" type="number" step="0.25" min="0" onChange={this.changeForm.bind(this)}
-                                         placeholder="Ilmoita työaika tunteina, desimaalein. (esim. 6,75h = 6h 45min)"
-                                         value={this.props.data.duration}/>
-                            <FormControl.Feedback />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="distanceField" validationState={this.getDistanceValidationState()}>
-                        <Col componentClass={ControlLabel}
-                             xs={3} sm={4}>
-                            Kilometrit
-                        </Col>
-                        <Col xs={12} sm={6}>
-                            <FormControl name="distance" type="number" min="0" onChange={this.changeForm.bind(this)}
-                                         placeholder="Kilometrit työpaikalle omalla autolla"
-                                         value={this.props.data.distance}/>
-                            <FormControl.Feedback />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="clientField" validationState={this.getClientValidationState()}>
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Asiakas
-                        </Col>
-                        <Col xs={12} sm={6}>
-                            {this.buildClients()}
-                        </Col>
-                    </FormGroup>
-                    {this.props.otherClient ? <FormGroup controlId="addClientField" validationState={this.getOtherClientValidationState()}>
-                            <Col componentClass={ControlLabel} xs={3} sm={4}>
-
-                            </Col>
-                            <Col xs={12} sm={6}>
-                                <FormControl name="addClient" type="text" onChange={this.changeForm.bind(this)}
-                                             placeholder="Asiakkaan/asiakasyrityksen nimi"
-                                             value={this.state.otherClientName}
-                                             required/>
+            <Form className="hourForm" onSubmit={this.onSubmit.bind(this)}>
+                <Grid>
+                    <Row>
+                        <Col xs={12} sm={12}>
+                            <FormGroup controlId="dateField" validationState={this.getDateValidationState()}>
+                                <ControlLabel>
+                                    Päivämäärä*
+                                </ControlLabel>
+                                <FormControl name="date" type="date" placeholder="dd.mm.yyyy" value={this.props.data.date} onChange={this.changeForm.bind(this)} required/>
                                 <FormControl.Feedback />
-                            </Col>
-                        </FormGroup> : null}
-                    <FormGroup controlId="workTypeField" validationState={this.getQualityValidationState()}>
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Työnkuva*
+                            </FormGroup>
                         </Col>
-                        <Col xs={12} sm={6}>
-                            {this.buildQualities()}
-                        </Col>
-                    </FormGroup>
-                    {this.props.otherQuality ? <FormGroup controlId="addQualityField" validationState={this.getOtherQualityValidationState()}>
-                            <Col componentClass={ControlLabel} xs={3} sm={4}>
+                    </Row>
 
-                            </Col>
-                            <Col xs={12} sm={6}>
-                                <FormControl name="addQuality" type="text" onChange={this.changeForm.bind(this)}
-                                             placeholder="Muu, mikä?"
-                                             value={this.state.otherQualityName}
-                                             required/>
+                    <Row>
+                        <Col xs={12} sm={12}>
+                            <FormGroup controlId="hoursField" validationState={this.getDurationValidationState()}>
+                                <ControlLabel>
+                                    Työaika
+                                </ControlLabel>
+                                <FormControl name="duration" type="number" step="0.25" min="0" onChange={this.changeForm.bind(this)}
+                                             placeholder="Ilmoita työaika tunteina, desimaalein. (esim. 6,75h = 6h 45min)"
+                                             value={this.props.data.duration}/>
                                 <FormControl.Feedback />
-                            </Col>
-                        </FormGroup> : null}
-                    <FormGroup controlId="infoField">
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
-                            Huomioitavaa
+                            </FormGroup>
                         </Col>
-                        <Col xs={12} sm={6}>
-                            <FormControl name="additionalInfo" componentClass="textArea" onChange={this.changeForm.bind(this)}
-                                         value={this.props.data.additionalInfo}/>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="submitButton">
-                        <Col componentClass={ControlLabel} xs={3} sm={4}>
+                    </Row>
 
+                    <Row>
+                        <Col xs={12} sm={12}>
+                            <FormGroup controlId="distanceField" validationState={this.getDistanceValidationState()}>
+                                <ControlLabel>
+                                    Kilometrit
+                                </ControlLabel>
+                                <FormControl name="distance" type="number" min="0" onChange={this.changeForm.bind(this)}
+                                             placeholder="Kilometrit työpaikalle omalla autolla"
+                                             value={this.props.data.distance}/>
+                                <FormControl.Feedback />
+                            </FormGroup>
                         </Col>
-                        <Col xs={12} sm={6}>
-                            <Button bsStyle="primary" type="submit" disabled={this.submitState()}>
-                                Ilmoita
-                            </Button>
+                    </Row>
+
+                    <Row>
+                        <Col xs={12} sm={12}>
+                            <FormGroup controlId="clientField" validationState={this.getClientValidationState()}>
+                                <ControlLabel>
+                                    Asiakas
+                                </ControlLabel>
+
+                                {this.buildClients()}
+                            </FormGroup>
                         </Col>
-                    </FormGroup>
-                </Form>
+                    </Row>
+
+                    <Row>
+                        {this.props.otherClient ?
+                            <Col xs={12} sm={12}>
+                                <FormGroup controlId="addClientField" validationState={this.getOtherClientValidationState()}>
+                                    <FormControl name="addClient" type="text" onChange={this.changeForm.bind(this)}
+                                                 placeholder="Asiakkaan/asiakasyrityksen nimi"
+                                                 value={this.state.otherClientName}
+                                                 required/>
+                                    <FormControl.Feedback />
+                                </FormGroup>
+                            </Col>
+                            : null}
+                    </Row>
+
+                    <Row>
+                        <Col xs={12} sm={12}>
+                            <FormGroup controlId="workTypeField" validationState={this.getQualityValidationState()}>
+                                <ControlLabel>
+                                    Työnkuva*
+                                </ControlLabel>
+                                {this.buildQualities()}
+                            </FormGroup>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        {this.props.otherQuality ?
+                            <Col xs={12} sm={12}>
+                                <FormGroup controlId="addQualityField" validationState={this.getOtherQualityValidationState()}>
+                                    <FormControl name="addQuality" type="text" onChange={this.changeForm.bind(this)}
+                                                 placeholder="Muu, mikä?"
+                                                 value={this.state.otherQualityName}
+                                                 required/>
+                                    <FormControl.Feedback />
+                                </FormGroup>
+                            </Col>
+                            : null}
+                    </Row>
+
+                    <Row>
+                        <Col xs={12} sm={12}>
+                            <FormGroup controlId="infoField">
+                                <ControlLabel>
+                                    Huomioitavaa
+                                </ControlLabel>
+
+                                <FormControl name="additionalInfo" componentClass="textArea" onChange={this.changeForm.bind(this)}
+                                             value={this.props.data.additionalInfo}/>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+
+
+
+                    <Row>
+                        <Col xs={12} sm={12}>
+                            <FormGroup controlId="submitButton">
+                                <Button bsStyle="primary" type="submit" disabled={this.submitState()}>
+                                    Ilmoita
+                                </Button>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+
+
+                </Grid>
+            </Form>
         )
     }
 

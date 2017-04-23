@@ -1,8 +1,13 @@
 .hourEntry {
-    width: 60%;
+    width: 70%;
     text-align: center;
     margin: auto;
     padding-top: 3em;
+}
+
+.hourForm {
+    width: 60%;
+    margin: auto;
 }
 
 ::-webkit-input-placeholder {
@@ -10,6 +15,11 @@
     color: #eeeeee;
 }
 
-.control-label {
-    float: left;
+@media screen and (max-width: 720px) {
+    .hourEntry {
+        width: 90%;
+    }
+    .hourForm {
+        width: 100%;
+    }
 }
