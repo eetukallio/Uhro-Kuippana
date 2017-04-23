@@ -16,14 +16,14 @@ class AddWorkersForm extends React.Component {
                 <Form onSubmit={this.onSubmit.bind(this)}>
                     <Grid>
                         <Row>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={4}>
                                 <FormGroup controlId="firstNameField" validationState={this.getFirstNameValidationState()}>
                                     <ControlLabel>Etunimi</ControlLabel>
                                     <FormControl type="text" name="firstName" value={this.props.data.firstName} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
                                     <FormControl.Feedback />
                                 </FormGroup>
                             </Col>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={4}>
                                 <FormGroup controlId="lastNameField" validationState={this.getLastNameValidationState()}>
                                     <ControlLabel>Sukunimi</ControlLabel>
                                     <FormControl type="text" name="lastName" value={this.props.data.lastName} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -33,7 +33,7 @@ class AddWorkersForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col xs={8} sm={8}>
+                            <Col xs={12} sm={8}>
                                 <FormGroup controlId="streetAddressField" validationState={this.getStreetAddressValidationState()}>
                                     <ControlLabel>Katuosoite</ControlLabel>
                                     <FormControl type="text" name="streetAddress" value={this.props.data.streetAddress} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -44,14 +44,14 @@ class AddWorkersForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={4}>
                                 <FormGroup controlId="cityField" validationState={this.getCityValidationState()}>
                                     <ControlLabel>Kaupunki</ControlLabel>
                                     <FormControl type="text" name="city" value={this.props.data.city} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
                                     <FormControl.Feedback />
                                 </FormGroup>
                             </Col>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={4}>
                                 <FormGroup controlId="zipCodeField" validationState={this.getZipCodeValidationState()}>
                                     <ControlLabel>Postinumero</ControlLabel>
                                     <FormControl type="text" name="zipCode" value={this.props.data.zipCode} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -61,7 +61,7 @@ class AddWorkersForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col xs={8} sm={8}>
+                            <Col xs={12} sm={8}>
                                 <FormGroup controlId="birthdayField" validationState={this.getBirthdayValidationState()}>
                                     <ControlLabel>Syntymäaika</ControlLabel>
                                     <FormControl type="date" name="birthday" value={this.props.data.birthday} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -72,7 +72,7 @@ class AddWorkersForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col xs={8} sm={8}>
+                            <Col xs={12} sm={8}>
                                 <FormGroup controlId="userNameField" validationState={this.getUsernameValidationState()}>
                                    <ControlLabel> Käyttäjänimi</ControlLabel>
                                     <FormControl type="text" name="username" value={this.props.data.username} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -83,15 +83,15 @@ class AddWorkersForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={4}>
                                 <FormGroup controlId="passwordField" validationState={this.getPasswordValidationState()}>
                                     <ControlLabel>Salasana</ControlLabel>
                                     <FormControl type="password" name="password" value={this.props.data.password} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
                                     <FormControl.Feedback />
                                 </FormGroup>
                             </Col>
-                            <Col xs={8} sm={4}>
-                                <FormGroup controlId="passwordField" validationState={this.getPasswordValidationState()}>
+                            <Col xs={12} sm={4}>
+                                <FormGroup controlId="confirmPasswordField" validationState={this.getConfirmPasswordValidationState()}>
                                     <ControlLabel>Vahvista salasana</ControlLabel>
                                     <FormControl type="password" name="confirmPassword" value={this.state.confirmedPassword} onChange={this.changeConfirmPassword.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
                                     <FormControl.Feedback />
@@ -100,7 +100,7 @@ class AddWorkersForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={4}>
                                 <FormGroup controlId="taxPercentField" validationState={this.getTaxPercentValidationState()}>
                                     <ControlLabel>Veroprosentti</ControlLabel>
                                     <FormControl type="text" name="taxPercent" value={this.props.data.taxPercent} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -108,7 +108,7 @@ class AddWorkersForm extends React.Component {
 
                                 </FormGroup>
                             </Col>
-                            <Col xs={8} sm={4}>
+                            <Col xs={12} sm={4}>
                                 <FormGroup controlId="hourWageField" validationState={this.getHourWageValidationState()}>
                                     <ControlLabel>Tuntipalkka</ControlLabel>
                                     <FormControl type="text" name="hourWage" value={this.props.data.hourWage} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -118,7 +118,7 @@ class AddWorkersForm extends React.Component {
                         </Row>
 
                         <Row>
-                            <Col xs={8} sm={8}>
+                            <Col xs={12} sm={8}>
                                 <FormGroup controlId="isEmployerField">
                                     <ControlLabel>Työnantaja</ControlLabel>
                                     <FormControl type="text" name="isEmployer" value={this.props.data.isEmployer} onChange={this.changeForm.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" required />
@@ -214,6 +214,12 @@ class AddWorkersForm extends React.Component {
 
     getPasswordValidationState() {
         if (this.props.data.password.length > 1) {
+            return 'success';
+        }
+    }
+
+    getConfirmPasswordValidationState() {
+        if (this.state.confirmedPassword.length > 0 && this.props.data.password === this.state.confirmedPassword) {
             return 'success';
         }
     }

@@ -1,19 +1,21 @@
+.management {
+    width: 90%;
+    margin: auto;
+}
+
 .management-nav {
     text-align: left;
     margin: auto;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: sandybrown;
     text-transform: uppercase;
     display: block;
     font-weight: bold;
     letter-spacing: 1px;
     transition: all 0.35s ease-in-out;
-    width: 90%;
+    width: 100%;
+}
 
-}
-.management {
-    height: 100vh;
-}
 
 .management-nav ul {
     padding-left: 0.4rem;
@@ -22,7 +24,7 @@
 
 .management-nav li {
     float: left;
-    padding: 0.9rem;
+    padding: 1rem 1rem 1rem 0;
     list-style: none;
 
 }
@@ -50,10 +52,13 @@
     transition: all 0.35s ease-in-out;
 }
 
+.searchBar {
+    float: right;
+}
+
 .content {
     clear: left;
     height:100vh;
-    width: 90%;
 }
 
 .inputField {
@@ -70,6 +75,9 @@
 }
 
 .addWorker {
-    padding-top: 1em;
-    float: left;
+    padding: 1em 1em 1em 0;
+}
+
+.container {
+    padding-left: 0;
 }
