@@ -14,13 +14,14 @@ class Nav extends Component {
                     {/*<img src={logo} className="App-logo" alt="logo" />*/}
                     <h1 className="headline"> Kuippana</h1>
                     <ul className="header-subnav">
-                        <li><Link to="/home">Tuntien syöttö </Link></li>
-                        <li><Link to="/paychecks"> Palkkalaskelmat</Link> </li>
-                        <li><Link to="/management">Hallinta</Link></li>
+                        <li><Link to="/home" activeClassName="active">Tuntien syöttö </Link></li>
+                        <li><Link to="/paychecks" activeClassName="active"> Palkkalaskelmat</Link> </li>
+                        <li><Link to="/management" activeClassName="active">Hallinta</Link></li>
+                        <div className="logInOut" ></div>
                         {this.props.loggedIn ? (
-                                <li><a href="#" onClick={this.props.logout}>Kirjaudu ulos</a></li>
+                                <li style={{float: 'right'}}><a href="#" onClick={this.props.logout}>Kirjaudu ulos</a></li>
                             ) : (
-                                <li><Link to="/login">Kirjaudu sisään</Link></li>
+                                <li style={{float: 'right'}}><Link to="/login">Kirjaudu sisään</Link></li>
                             )}
                     </ul>
                 </header>

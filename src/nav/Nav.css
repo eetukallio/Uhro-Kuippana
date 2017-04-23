@@ -1,35 +1,42 @@
 .header {
-    text-align: center;
+    text-align: left;
     background: sandybrown;
     background-size: cover;
-    position: relative;
     overflow: visible;
-    padding-top: 2.5rem;
-    padding-bottom: 4.9rem; }
+    padding-top: 1em;
+    height: 4.5em;
+}
 .header .headline {
-    color: #ffe; }
-
-.header-subnav {
-    float: none;
-    position: absolute;
-    text-align: center;
-    margin: 0 auto;
-    bottom: 0;
-    width: 100%; }
-.header-subnav li {
-    float: none;
-    display: inline-block; }
-.header-subnav li a {
-    padding: 0.9rem 1rem;
-    font-size: 0.75rem;
     color: #ffe;
-    text-transform: uppercase;
-    display: block;
+    float: left;
+    padding-left: 0.5em;
+}
+
+.headline {
     font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    padding-right: 1em;
+}
+
+.header-subnav ul {
+    display: inline-block;
+    float:left
+}
+
+.header-subnav li {
+    padding-top:0.5em;
+    display: inline;
+    float: left;
+}
+.header-subnav li a {
+    padding: 2.5em 0.5em 1.5em 0.5em;
+    font-size: 1.5rem;
+    color: #ffe;
     letter-spacing: 1px;
     text-decoration: none;
     transition: all 0.35s ease-in-out; }
-.header-subnav li a.is-active {
+.active {
     background: rgba(250, 250, 250, 0.15); }
 .header-subnav li a:hover {
     background: rgba(250, 250, 250, 0.15);
