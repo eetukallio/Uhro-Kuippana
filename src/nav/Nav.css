@@ -3,9 +3,16 @@
     background: sandybrown;
     background-size: cover;
     overflow: visible;
-    padding-top: 1em;
-    height: 4.5em;
+    padding: 1em 0;
+    display: flex;
+    align-items: center; /* align vertical */
 }
+
+.headerContent {
+    width: 70%;
+    margin: auto;
+}
+
 .header .headline {
     color: #ffe;
     float: left;
@@ -16,21 +23,21 @@
     font-weight: bold;
     text-transform: uppercase;
     margin: 0;
-    padding-right: 1em;
+    padding-right: 0.5em;
 }
 
-.header-subnav ul {
-    display: inline-block;
-    float:left
+.header-subnav {
+    margin-top: 0.8em;
 }
 
 .header-subnav li {
-    padding-top:0.5em;
+    text-decoration: none;
     display: inline;
     float: left;
 }
 .header-subnav li a {
-    padding: 2.5em 0.5em 1.5em 0.5em;
+    margin-top: 1em;
+    padding: 2em 0.5em 1.5em 0.5em;
     font-size: 1.5rem;
     color: #ffe;
     letter-spacing: 1px;

@@ -1,6 +1,6 @@
 .loginContainer {
     display: inline-block;
-    width: 40%;
+    width: 30%;
     border: solid 1px lightgray;
     border-radius: 5px;
     text-align: center;
@@ -9,7 +9,7 @@
 
 .login {
     display: block;
-    padding: 1em 1em 0.25em 1em;
+    padding: 1em 1em 0 1em;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -43,7 +43,13 @@
     padding-left: 1em;
 }
 
-@media screen and (max-width:  460px) {
+@media screen and (max-width:  920px) {
+    .loginContainer {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:  480px) {
     .loginContainer {
         width: 90%;
     }

@@ -12,6 +12,7 @@ class Nav extends Component {
             <div className="Nav">
                 <header className="header">
                     {/*<img src={logo} className="App-logo" alt="logo" />*/}
+                    <div className="headerContent">
                     <h1 className="headline"> Kuippana</h1>
                     <ul className="header-subnav">
                         <li><Link to="/home" activeClassName="active">Tuntien syöttö </Link></li>
@@ -24,6 +25,7 @@ class Nav extends Component {
                                 <li style={{float: 'right'}}><Link to="/login">Kirjaudu sisään</Link></li>
                             )}
                     </ul>
+                    </div>
                 </header>
             </div>
 
