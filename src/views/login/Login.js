@@ -22,10 +22,13 @@ class Login extends React.Component {
                     onSubmit={this.login.bind(this)}    btnText={"Kirjaudu"}
                     currentlySending={currentlySending} errorMessage={this.props.data.errorMessage}
                 />
-            {this.props.data.errorMessage === '' ? null :
-                <Alert bsStyle="warning">
-                    Käyttäjätunnus tai salasana on virheellinen
-                </Alert>}
+            <div className="alertContainer">
+                {this.props.data.errorMessage === '' ? null :
+                    <Alert bsStyle="warning">
+                        Käyttäjätunnus tai salasana on virheellinen
+                    </Alert>}
+            </div>
+
             </div>
 
     }

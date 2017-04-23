@@ -4,12 +4,12 @@
     border: solid 1px lightgray;
     border-radius: 5px;
     text-align: center;
-    margin: 1em;
+    margin-top: 3em;
 }
 
 .login {
     display: block;
-    padding: 1em;
+    padding: 1em 1em 0.25em 1em;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -18,9 +18,10 @@
 }
 
 .loginHeader {
+    text-align: left;
     display: inline-block;
     width: 100%;
-    padding: 0;
+    padding: 0 0 0.5em 1em;
     margin: 0;
     background: lightgray;
     color: gray;
@@ -28,5 +29,19 @@
 
 .container {
     width: auto;
+}
+
+.alertContainer {
+    padding: 1em
+}
+
+.alert {
+    margin: 0;
+}
+
+@media screen and (max-width:  460px) {
+    .loginContainer {
+        width: 90%;
+    }
 }
 
