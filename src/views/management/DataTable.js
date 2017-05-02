@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import {Table} from 'react-bootstrap';
 import WorkerEntries from './managementComponents/WorkerEntries';
 import axios from 'axios';
+import {Collapse} from 'react-bootstrap';
 
 class DataTable extends Component {
     constructor(props) {
@@ -141,9 +142,12 @@ class DataTable extends Component {
         return (
             <div>
                 {this.state.displayWorkerSpecific === true ?
+                    <Collapse in={this.state.displayWorkerSpecific}>
                     <div>
                         <WorkerEntries worker = {this.state.displayedWorker}/>
-                    </div> : null}
+                    </div>
+                    </Collapse>: null}
+
             <Table striped bordered condensed hover>
                 <thead>
                 <tr>

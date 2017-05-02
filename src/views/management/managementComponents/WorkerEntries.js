@@ -47,8 +47,10 @@ class WorkerEntries extends Component {
         const tmp = this.state.data;
 
         return tmp.filter( function (obj) {
-            obj.userID === this.props.worker.id
-            }
+            console.log(obj.userId);
+            console.log(this.props.worker.id);
+            return obj.userId === this.props.worker.id;
+            }, this
         ).map(function (obj, i) {
             return <tr key={i}>
                 <td key="user">{obj.clientName} </td>
@@ -65,9 +67,7 @@ class WorkerEntries extends Component {
         return (
             <Table striped bordered condensed hover>
                 <thead>
-                <tr>
-                    {this.setUpHeaders()}
-                </tr>
+                {this.setUpHeaders()}
                 </thead>
                 <tbody>
                 {this.setEntries()}
