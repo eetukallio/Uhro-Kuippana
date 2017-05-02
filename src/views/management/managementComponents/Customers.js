@@ -44,7 +44,8 @@ class Customers extends Component {
 
         return (
             <div  className="customers">
-                <DataTable type="customers" searchInput={this.props.searchInput} data={this.state.data} headers={this.state.headers}/>
+                <DataTable type="customers" searchInput={this.props.searchInput} data={this.state.data} headers={this.state.headers}
+                           refresh={this.fetchData.bind(this)}/>
             </div>
         );
     }

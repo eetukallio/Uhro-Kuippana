@@ -48,7 +48,8 @@ class HourEntries extends Component {
         return (
             <div  className="hourEntries">
                 <DataTable type="entries" searchInput={this.props.searchInput}
-                           data={this.state.data} headers={this.state.headers}/>
+                           data={this.state.data} headers={this.state.headers}
+                           refresh={this.fetchData.bind(this)}/>
             </div>
         );
     }

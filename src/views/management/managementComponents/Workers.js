@@ -47,7 +47,8 @@ class Workers extends Component {
         <div>
             <div className="workers">
                 <DataTable type="workers" searchInput={this.props.searchInput}
-                           data={this.state.data} headers={this.state.headers}/>
+                           data={this.state.data} headers={this.state.headers}
+                           refresh={this.fetchData.bind(this)}/>
             </div>
         </div>
         );

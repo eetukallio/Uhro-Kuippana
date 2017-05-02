@@ -149,10 +149,11 @@ class DataTable extends Component {
         } else {
             this.setState({editingCell: id});
             console.log(cells);
-            for (let i = 0; i < cells.length-1; i++) {
+            for (let i = 0; i < cells.length-2; i++) {
                 cells[i].contentEditable = "true";
             }
         }
+        this.props.refresh();
     }
 
     setEntries() {
@@ -175,7 +176,9 @@ class DataTable extends Component {
                 <td key={"quality_"+i}>{obj.quality}</td>
                 <td key={"additionalInfo_"+i}>{obj.additionalInfo} </td>
                 <td key="delete">
-                    <a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("workorders", obj.id)} />
+                    {this.state.deleteRow === obj.id ?
+                        <a href="#" style={{color: "red"}} className="confirm" onClick={() => this.deleteSelected("workorders", obj.id)}>OK?</a>
+                        : <a href="#" style={{color: "darkred"}} className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("workorders", obj.id)} /> }
                 </td>
             </tr>
         }, this);
@@ -197,6 +200,8 @@ class DataTable extends Component {
                  that.setState({deleteRow: ''});
             }, 3000);
         }
+
+        this.props.refresh();
     }
 
     render() {
@@ -223,4 +228,9 @@ class DataTable extends Component {
         )
     }
 }
+
+DataTable.propTypes = {
+    refresh: React.PropTypes.func.isRequired
+};
+
  export default DataTable;
