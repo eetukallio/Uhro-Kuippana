@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import {Table} from 'react-bootstrap';
+import axios from 'axios';
 
 class DataTable extends Component {
     constructor(props) {
@@ -18,6 +19,8 @@ class DataTable extends Component {
         this.setWorkers = this.setWorkers.bind(this);
         this.setEntries = this.setEntries.bind(this);
         this.setCustomers = this.setCustomers.bind(this);
+
+        this.deleteSelected = this.deleteSelected.bind(this);
     }
 
     setUpHeaders() {
@@ -59,8 +62,9 @@ class DataTable extends Component {
                 <td key="city">{obj.city}</td>
                 <td key="zip">{obj.zipCode}</td>
                 <td key="ycode">{obj.yCode}</td>
+                <td key="delete"><a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("clients", obj.id)} /></td>
             </tr>;
-        });
+        }, this);
     }
 
     setWorkers() {
@@ -87,8 +91,9 @@ class DataTable extends Component {
                     <td key="tax">{obj.taxPercent}</td>
                     <td key="wage">{obj.hourWage}</td>
                     <td key="username">{obj.username}</td>
+                     <td key="delete"><a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("users", obj.id)} /></td>
                 </tr>;
-        });
+        }, this);
 
     }
 
@@ -111,8 +116,18 @@ class DataTable extends Component {
                 <td key="duration">{obj.duration}</td>
                 <td key="quality">{obj.quality}</td>
                 <td key="additionalInfo">{obj.additionalInfo} </td>
+                <td key="delete"><a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("workorders", obj.id)} /></td>
             </tr>
-        });
+        }, this);
+    }
+
+    deleteSelected(tableName, id) {
+        axios.delete("/" + tableName + "/" + id)
+            .then((res) => {
+                console.log("delete'd");
+                console.log(res.data);
+            })
+            .catch(err => console.log(err));
     }
 
     render() {

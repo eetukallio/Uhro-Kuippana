@@ -87,3 +87,9 @@ span.glyphicon {
 .container {
     padding-left: 0;
 }
+
+a.glyphicon {
+    text-decoration: none;
+    color: darkred;
+    text-align: center;
+}
