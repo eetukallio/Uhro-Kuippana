@@ -75,7 +75,7 @@ class DataTable extends Component {
                 <td className="yCode" key="ycode">{obj.yCode}</td>
                 <td key="edit">
                     {this.state.editingCell === obj.id ?
-                        <a href="#" className="glyphicon glyphicon-ok" style={{color: "green"}} onClick={() => this.saveRow("clients", obj.id)} />
+                        <a href="#" className="glyphicon glyphicon-pencil" style={{color: "green"}} onClick={() => this.saveRow("clients", obj.id)} />
                         : <a href="#" className="glyphicon glyphicon-ok" onClick={() => this.saveRow("clients", obj.id)} />}
                 </td>
                 <td key="delete">
@@ -112,7 +112,7 @@ class DataTable extends Component {
                     <td className="hourWage" key="wage">{obj.hourWage}</td>
                     <td className="username" key="username">{obj.username}</td>
                      <td key="edit">
-                         {this.state.editingCell === obj.id ? <a href="#" className="glyphicon glyphicon-ok" style={{color: "green"}} onClick={() => this.saveRow("users", obj.id)} />
+                         {this.state.editingCell === obj.id ? <a href="#" className="glyphicon glyphicon-pencil" style={{color: "green"}} onClick={() => this.saveRow("users", obj.id)} />
                              : <a href="#" className="glyphicon glyphicon-ok" onClick={() => this.saveRow("users", obj.id)} />}
                      </td>
                      <td key="delete">

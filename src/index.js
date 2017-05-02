@@ -22,13 +22,14 @@ import HourEntries from './views/management/managementComponents/HourEntries';
 import AddWorkers from './views/management/managementComponents/AddWorkers'
 import axios from 'axios';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore , +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-const store = createStoreWithMiddleware(rootReducer);
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const token = cookie.load('token');
+const isEmployer = cookie.load(('user')).isEmployer;
 
 if (token) {
-    store.dispatch({type: SET_AUTH});
+    store.dispatch({type: SET_AUTH, isEmployer: isEmployer === 1});
     axios.defaults.headers.common['Authorization'] = token;
 }
 

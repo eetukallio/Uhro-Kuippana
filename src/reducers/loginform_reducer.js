@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
         case SET_AUTH:
             return {...state, errorMessage: '', formState: {username: '', password: ''}, loggedIn: true, isEmployer: action.isEmployer};
         case UNAUTH_USER:
-            return {...state, loggedIn: false};
+            return {...state, loggedIn: false, isEmployer: false};
         case SENDING_REQUEST:
             return {...state, currentlySending: action.sending };
         case SET_ERROR_MESSAGE:
