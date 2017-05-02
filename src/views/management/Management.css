@@ -16,15 +16,13 @@
     width: 100%;
 }
 
-
 .management-nav ul {
-    padding-left: 0.4rem;
-
+    padding-left: 0;
 }
 
 .management-nav li {
     float: left;
-    padding: 1rem 1rem 1rem 0;
+    padding: 1em 0.5em;
     list-style: none;
 
 }

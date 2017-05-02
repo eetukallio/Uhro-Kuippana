@@ -180,7 +180,7 @@
     left: 50%;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 935px) {
     .headerContent {
         width: 100%;
         padding-left: 1em;
