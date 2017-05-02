@@ -9,9 +9,10 @@ export function login(username, password) {
 
         axios.post("api/auth/login", {username, password})
             .then((res) => {
-                console.log("USER ID IS " + res.data.user.id);
+                console.log("WE GOT " + res.data);
                 cookie.save('token', res.data.token, {path: '/'});
                 cookie.save('user', res.data.user, {path: '/'});
+                axios.defaults.headers.common['Authorization'] = res.data.token;
                 dispatch(sendingRequest(false));
                 dispatch({type: SET_AUTH});
                 dispatch(setUser(res.data.user.id));
