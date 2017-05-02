@@ -18,12 +18,13 @@ class Nav extends Component {
                         <li><Link to="/home" activeClassName="active">Tuntien syöttö </Link></li>
                         <li><Link to="/paychecks" activeClassName="active"> Palkkalaskelmat</Link> </li>
                         <li><Link to="/management" activeClassName="active">Hallinta</Link></li>
-                        <div className="logInOut" ></div>
+                        <div className="logInOut" >
                         {this.props.loggedIn ? (
                                 <li style={{float: 'right'}}><a href="#" onClick={this.props.logout}>Kirjaudu ulos</a></li>
                             ) : (
                                 <li style={{float: 'right'}}><Link to="/login">Kirjaudu sisään</Link></li>
                             )}
+                        </div>
                     </ul>
 
                         {/*<span onClick={this.burgerClick.bind(this)} className="header-burgerIcon"><span className="glyphicon glyphicon-menu-hamburger" /></span>*/}
