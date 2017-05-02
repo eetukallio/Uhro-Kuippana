@@ -14,7 +14,7 @@ export function login(username, password) {
                 cookie.save('user', res.data.user, {path: '/'});
                 axios.defaults.headers.common['Authorization'] = res.data.token;
                 dispatch(sendingRequest(false));
-                dispatch({type: SET_AUTH});
+                dispatch(setAuthState(res.data.user.isEmployer === 1));
                 dispatch(setUser(res.data.user.id));
                 browserHistory.push("/home");
             })
@@ -56,10 +56,10 @@ export function register(formData) {
 
 /**
  * Sets the authentication state of the application
- * @param {boolean} newState True means a user is logged in, false means no user is logged in
+ * @param {boolean} isEmployer True means a user is logged in, false means no user is logged in
  */
-export function setAuthState(newState) {
-    return { type: SET_AUTH, newState };
+export function setAuthState(isEmployer) {
+    return { type: SET_AUTH, isEmployer };
 }
 
 export function setUser(newState) {

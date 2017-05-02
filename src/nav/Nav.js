@@ -17,7 +17,14 @@ class Nav extends Component {
                     <ul className="header-subnav">
                         <li><Link to="/home" activeClassName="active">Tuntien syöttö </Link></li>
                         <li><Link to="/paychecks" activeClassName="active"> Palkkalaskelmat</Link> </li>
-                        <li><Link to="/management" activeClassName="active">Hallinta</Link></li>
+
+                        <div className="management" >
+                            {this.props.isEmployer ? (
+                                    <li><Link to="/management" activeClassName="active">Hallinta</Link></li>
+                                ) : (
+                                    null
+                                )}
+                        </div>
                         <div className="logInOut" >
                         {this.props.loggedIn ? (
                                 <li style={{float: 'right'}}><a href="#" onClick={this.props.logout}>Kirjaudu ulos</a></li>
@@ -86,7 +93,8 @@ class Nav extends Component {
 // Which props do we want to inject, given the global state?
 function mapStateToProps(state) {
     return {
-        loggedIn: state.auth.loggedIn
+        loggedIn: state.auth.loggedIn,
+        isEmployer: state.auth.isEmployer
     }
 }
 

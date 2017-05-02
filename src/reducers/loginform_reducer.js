@@ -9,6 +9,7 @@ const initialState = {
         password: ''
     },
     loggedIn: false,
+    isEmployer: false,
     currentlySending: false,
     errorMessage: ''
 };
@@ -19,7 +20,7 @@ export default function (state = initialState, action) {
         case CHANGE_FORM:
             return {...state, formState: action.newState};
         case SET_AUTH:
-            return {...state, errorMessage: '', formState: {username: '', password: ''}, loggedIn: true};
+            return {...state, errorMessage: '', formState: {username: '', password: ''}, loggedIn: true, isEmployer: action.isEmployer};
         case UNAUTH_USER:
             return {...state, loggedIn: false};
         case SENDING_REQUEST:

@@ -13,6 +13,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 import { checkAuth } from './utils/checkAuth';
+import { checkEmployer } from './utils/checkEmployer';
 import cookie from 'react-cookie';
 import {SET_AUTH, SET_USER} from './constants/AppConstants';
 import Customers from './views/management/managementComponents/Customers';
@@ -33,6 +34,9 @@ if (token) {
 
 
 axios.defaults.baseURL = 'http://207.154.228.188:3000';
+// axios.defaults.baseURL = 'http://localhost:8080';
+
+
 
 ReactDOM.render(
     <Provider store={store}>
@@ -42,7 +46,7 @@ ReactDOM.render(
                 <Route path="/login" component={Login}/>
                 <Route path="/home" component={checkAuth(HourEntry)}/>
                 <Route path="/paychecks" component={checkAuth(Paychecks)}/>
-                <Route path="/management" component={checkAuth(Management)}>
+                <Route path="/management" component={checkEmployer(Management)}>
                     <IndexRoute component={HourEntries}/>
                     <Route path="/management/workers" component={Workers}/>
                     <Route path="/management/customers" component={Customers} />
