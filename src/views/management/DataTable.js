@@ -4,13 +4,15 @@
 
 import React, { Component } from 'react';
 import {Table} from 'react-bootstrap';
+import WorkerEntries from './managementComponents/WorkerEntries';
 
 class DataTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
             headers: this.props.headers,
-            type: this.props.type
+            type: this.props.type,
+            displayWorkerSpecific: false
         };
 
         this.setUpTable = this.setUpTable.bind(this);
@@ -18,6 +20,11 @@ class DataTable extends Component {
         this.setWorkers = this.setWorkers.bind(this);
         this.setEntries = this.setEntries.bind(this);
         this.setCustomers = this.setCustomers.bind(this);
+        this.showWorkerSpecific = this.showWorkerSpecific.bind(this);
+    }
+
+    showWorkerSpecific(worker) {
+        this.setState({displayWorkerSpecific: true, displayedWorker: worker})
     }
 
     setUpHeaders() {
@@ -79,7 +86,7 @@ class DataTable extends Component {
                 obj.streetAddress.toLowerCase().includes(searchInput.toLowerCase());
         }).map(function (obj) {
                 console.log("map");
-                 return <tr key={obj.id}>
+                 return <tr key={obj.id} onClick={() => this.showWorkerSpecific(obj)}>
                     <td key="name">{obj.lastName} {obj.firstName}</td>
                     <td key="address">{obj.streetAddress}</td>
                     <td key="city">{obj.city}</td>
@@ -117,6 +124,11 @@ class DataTable extends Component {
 
     render() {
         return (
+            <div>
+                {this.state.displayWorkerSpecific === true ?
+                    <div>
+                        <WorkerEntries worker = {this.state.displayedWorker}/>
+                    </div> : null}
             <Table striped bordered condensed hover>
                 <thead>
                 <tr>
@@ -127,6 +139,7 @@ class DataTable extends Component {
                     {this.setUpTable()}
                 </tbody>
             </Table>
+            </div>
         )
     }
 }

@@ -44,10 +44,12 @@ class Workers extends Component {
         console.log(this.state.data);
 
         return (
+        <div>
             <div className="workers">
                 <DataTable type="workers" searchInput={this.props.searchInput}
                            data={this.state.data} headers={this.state.headers}/>
             </div>
+        </div>
         );
     }
 }
