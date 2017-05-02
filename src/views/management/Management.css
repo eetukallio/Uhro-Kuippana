@@ -93,3 +93,10 @@ a.glyphicon {
     color: darkred;
     text-align: center;
 }
+
+a.confirm {
+    font-weight: bold;
+    text-decoration: none;
+    color: darkred;
+    text-align: center;
+}

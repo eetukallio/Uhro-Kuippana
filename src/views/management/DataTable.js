@@ -14,7 +14,9 @@ class DataTable extends Component {
         this.state = {
             headers: this.props.headers,
             type: this.props.type,
-            displayWorkerSpecific: false
+            displayWorkerSpecific: false,
+            editingCell: '',
+            deleteRow: ''
         };
 
         this.setUpTable = this.setUpTable.bind(this);
@@ -23,6 +25,7 @@ class DataTable extends Component {
         this.setEntries = this.setEntries.bind(this);
         this.setCustomers = this.setCustomers.bind(this);
 
+        this.saveRow = this.saveRow.bind(this);
         this.deleteSelected = this.deleteSelected.bind(this);
         this.showWorkerSpecific = this.showWorkerSpecific.bind(this);
     }
@@ -64,13 +67,22 @@ class DataTable extends Component {
             return obj.name.includes(searchInput);
         }).map(function (obj) {
             console.log(obj);
-            return <tr key={obj.id}>
-                <td key="name">{obj.name}</td>
-                <td key="address">{obj.streetAddress}</td>
-                <td key="city">{obj.city}</td>
-                <td key="zip">{obj.zipCode}</td>
-                <td key="ycode">{obj.yCode}</td>
-                <td key="delete"><a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("clients", obj.id)} /></td>
+            return <tr className={"clients_row_"+obj.id} key={obj.id}>
+                <td className="name" key="name">{obj.name}</td>
+                <td className="streetAddress" key="address">{obj.streetAddress}</td>
+                <td className="city" key="city">{obj.city}</td>
+                <td className="zipCode" key="zip">{obj.zipCode}</td>
+                <td className="yCode" key="ycode">{obj.yCode}</td>
+                <td key="edit">
+                    {this.state.editingCell === obj.id ?
+                        <a href="#" className="glyphicon glyphicon-ok" style={{color: "green"}} onClick={() => this.saveRow("clients", obj.id)} />
+                        : <a href="#" className="glyphicon glyphicon-ok" onClick={() => this.saveRow("clients", obj.id)} />}
+                </td>
+                <td key="delete">
+                    {this.state.deleteRow === obj.id ?
+                        <a href="#" style={{color: "red"}} className="confirm" onClick={() => this.deleteSelected("clients", obj.id)}>OK?</a>
+                        : <a href="#" style={{color: "darkred"}} className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("clients", obj.id)} /> }
+                </td>
             </tr>;
         }, this);
     }
@@ -91,18 +103,56 @@ class DataTable extends Component {
                 obj.streetAddress.toLowerCase().includes(searchInput.toLowerCase());
         }).map(function (obj) {
                 console.log("map");
-                 return <tr key={obj.id} onClick={() => this.showWorkerSpecific(obj)}>
-                    <td key="name">{obj.lastName} {obj.firstName}</td>
-                    <td key="address">{obj.streetAddress}</td>
-                    <td key="city">{obj.city}</td>
-                    <td key="zip">{obj.zipCode}</td>
-                    <td key="tax">{obj.taxPercent}</td>
-                    <td key="wage">{obj.hourWage}</td>
-                    <td key="username">{obj.username}</td>
-                     <td key="delete"><a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("users", obj.id)} /></td>
+                 return <tr className={"users_row_"+obj.id} key={obj.id}>
+                    <td className="name" key="name" onClick={() => this.showWorkerSpecific(obj)}>{obj.lastName} {obj.firstName}</td>
+                    <td className="streetAddress" key="address">{obj.streetAddress}</td>
+                    <td className="city" key="city">{obj.city}</td>
+                    <td className="zipCode" key="zip">{obj.zipCode}</td>
+                    <td className="taxPercent" key="tax">{obj.taxPercent}</td>
+                    <td className="hourWage" key="wage">{obj.hourWage}</td>
+                    <td className="username" key="username">{obj.username}</td>
+                     <td key="edit">
+                         {this.state.editingCell === obj.id ? <a href="#" className="glyphicon glyphicon-ok" style={{color: "green"}} onClick={() => this.saveRow("users", obj.id)} />
+                             : <a href="#" className="glyphicon glyphicon-ok" onClick={() => this.saveRow("users", obj.id)} />}
+                     </td>
+                     <td key="delete">
+                         {this.state.deleteRow === obj.id ?
+                             <a href="#" style={{color: "red"}} className="confirm" onClick={() => this.deleteSelected("users", obj.id)}>OK?</a>
+                             : <a href="#" style={{color: "darkred"}} className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("users", obj.id)} /> }
+                     </td>
                 </tr>;
         }, this);
+    }
 
+    saveRow(tableName, id) {
+        const cells = document.getElementsByClassName(tableName + "_row_" + id)[0].cells;
+        if (this.state.editingCell === id) {
+            this.setState({editingCell: ''});
+            let data = {};
+            for (let i = 0; i < cells.length-2; i++) {
+                if (tableName === "users" && cells[i].className === "name") {
+                    let names = cells[i].innerText.split(" ");
+                    data = Object.assign(data, {firstName: names[1], lastName: names[0]});
+                } else {
+                    data = Object.assign(data, {[cells[i].className]: cells[i].innerText});
+                    cells[i].contentEditable = "false";
+                }
+            }
+            console.log(data);
+
+            axios.put("/" + tableName+ "/" + id, data)
+                .then( (res) => {
+                    console.log("put'd");
+                    console.log(res.data);
+                    this.setState({data: res.data});
+                });
+        } else {
+            this.setState({editingCell: id});
+            console.log(cells);
+            for (let i = 0; i < cells.length-1; i++) {
+                cells[i].contentEditable = "true";
+            }
+        }
     }
 
     setEntries() {
@@ -118,24 +168,35 @@ class DataTable extends Component {
             }
         ).map(function (obj, i) {
             return <tr key={i}>
-                <td key="user">{obj.clientName} </td>
-                <td key="client">{obj.fullName}</td>
-                <td key="date">{obj.date.split('T')[0]}</td>
-                <td key="duration">{obj.duration}</td>
-                <td key="quality">{obj.quality}</td>
-                <td key="additionalInfo">{obj.additionalInfo} </td>
-                <td key="delete"><a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("workorders", obj.id)} /></td>
+                <td key={"user_"+i}>{obj.clientName} </td>
+                <td key={"client_"+i}>{obj.fullName}</td>
+                <td key={"date_"+i}>{obj.date.split('T')[0]}</td>
+                <td key={"duration_"+i}>{obj.duration}</td>
+                <td key={"quality_"+i}>{obj.quality}</td>
+                <td key={"additionalInfo_"+i}>{obj.additionalInfo} </td>
+                <td key="delete">
+                    <a href="#" className="glyphicon glyphicon-remove" onClick={() => this.deleteSelected("workorders", obj.id)} />
+                </td>
             </tr>
         }, this);
     }
 
     deleteSelected(tableName, id) {
-        axios.delete("/" + tableName + "/" + id)
-            .then((res) => {
-                console.log("delete'd");
-                console.log(res.data);
-            })
-            .catch(err => console.log(err));
+        if (this.state.deleteRow === id) {
+            this.setState({deleteRow: ''});
+            axios.delete("/" + tableName + "/" + id)
+                .then((res) => {
+                    console.log("delete'd");
+                    console.log(res.data);
+                })
+                .catch(err => console.log(err));
+        } else {
+            this.setState({deleteRow: id});
+            let that = this;
+            setTimeout(function () {
+                 that.setState({deleteRow: ''});
+            }, 3000);
+        }
     }
 
     render() {
