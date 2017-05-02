@@ -43,6 +43,8 @@ class WorkerEntries extends Component {
 
     setTotals() {
 
+        if (this.state.data === []) return null;
+
         const dateFormatTmp = this.state.data.map( obj => {
             const dateSplit = obj.date.split('-');
             const day = dateSplit[2].split('T')[0];
@@ -149,7 +151,7 @@ class WorkerEntries extends Component {
         return renderedPaychecks;
     }
 
-    componentDidMount(){
+    componentWillReceiveProps(){
         this.fetchEntries();
     }
 
@@ -159,6 +161,7 @@ class WorkerEntries extends Component {
                 const tmp = res.data.filter(obj =>
                 obj.userId === this.props.worker.id);
                 console.log("Work orders fetched");
+                console.log(res.data);
                 this.setState({data: tmp, loadedEntries: true});
             }).catch(err => console.log(err));
     }
@@ -188,7 +191,7 @@ class WorkerEntries extends Component {
         <div>
 
 
-            <Table striped bordered condensed hover containerTable>
+            <Table striped bordered condensed hover>
                 <thead>
                 {this.setUpHeaders()}
                 </thead>
@@ -197,7 +200,7 @@ class WorkerEntries extends Component {
 
                 </tbody>
             </Table>
-            <Table striped bordered condensed hover containerTable>
+            <Table striped bordered condensed hover>
                 <thead>
                 {this.setUpTotalsHeaders()}
                 </thead>

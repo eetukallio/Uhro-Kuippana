@@ -47,7 +47,7 @@ ReactDOM.render(
                 <Route path="/home" component={checkAuth(HourEntry)}/>
                 <Route path="/paychecks" component={checkAuth(Paychecks)}/>
                 <Route path="/management" component={checkEmployer(Management)}>
-                    <IndexRoute component={HourEntries}/>
+                    <IndexRoute component={Workers}/>
                     <Route path="/management/workers" component={Workers}/>
                     <Route path="/management/customers" component={Customers} />
                     <Route path="/management/entries"  component={HourEntries} />

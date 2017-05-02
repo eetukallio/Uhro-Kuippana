@@ -39,9 +39,9 @@ class Management extends Component {
             <div  className="management">
                 <div className="management-nav">
                     <ul >
+                        <Link activeClassName="active" to="/management/workers"><li>Työntekijät</li></Link>
                         <Link activeClassName="active" to="/management/entries"><li>Merkinnät</li></Link>
                         <Link activeClassName="active" to="/management/customers"><li>Asiakkaat</li></Link>
-                        <Link activeClassName="active" to="/management/workers"><li>Työntekijät</li></Link>
                         <Link activeClassName="active" to="/management/addworkers"><li>Lisää työntekijä</li></Link>
                     </ul>
                 </div>
