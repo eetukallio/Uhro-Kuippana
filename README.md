@@ -8,13 +8,9 @@ To install the dependencies of this project use the following:
 
 ---------------------------------
 
-npm install --g create-react-app
+`npm install`
 
-create-react-app my-app
-
-cd my-app
-
-npm start
+`npm start`
 
 ---------------------------------
 

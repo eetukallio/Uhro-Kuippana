@@ -1,0 +1,25 @@
+.hourEntry {
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    padding-top: 3em;
+}
+
+.hourForm {
+    width: 60%;
+    margin: auto;
+}
+
+::-webkit-input-placeholder {
+    font-size: smaller;
+    color: #eeeeee;
+}
+
+@media screen and (max-width: 720px) {
+    .hourEntry {
+        width: 90%;
+    }
+    .hourForm {
+        width: 100%;
+    }
+}
